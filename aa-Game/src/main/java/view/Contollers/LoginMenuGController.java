@@ -1,6 +1,9 @@
 package view.Contollers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -11,8 +14,18 @@ public class LoginMenuGController {
     private TextField username;
     @FXML
     private PasswordField password;
+    @FXML
+    private Label messageLabel;
+    @FXML
+    private Button loginButton ;
 
-    public void submit(MouseEvent mouseEvent) {
-        System.out.println(username.getText() + "    " + password.getText());
+
+
+    public void signUp(MouseEvent mouseEvent) {
+
+    }
+
+    public void login(MouseEvent mouseEvent) {
+        messageLabel.setText( username.getText() + "    " + password.getText() );
     }
 }

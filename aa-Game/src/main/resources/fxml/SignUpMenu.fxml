@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.Contollers.LoginMenuGController">
+<BorderPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Contollers.LoginMenuGController">
    <left>
       <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #263f73;" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
                </effect>
             </Label>
             <Circle fill="#21b5ff00" layoutX="115.0" layoutY="136.0" radius="49.0" stroke="WHITE" strokeType="INSIDE" />
-            <Circle fill="WHITE" layoutX="116.0" layoutY="292.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
+            <Circle fill="WHITE" layoutX="116.0" layoutY="239.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" />
             <Label layoutX="57.0" layoutY="347.0" text="Armin GeramiRad" textFill="WHITE">
                <font>
                   <Font name="American Typewriter" size="13.0" />
@@ -43,43 +43,59 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </Label>
+            <Line endY="39.0" layoutX="116.0" layoutY="200.0" startX="7.62939453125E-6" startY="-15.0" stroke="WHITE" />
          </children>
       </AnchorPane>
    </left>
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="90.0" layoutY="51.0" text="Login Menu">
+            <Label alignment="CENTER" layoutX="82.0" layoutY="23.0" text="SignUp Menu">
                <font>
                   <Font name="American Typewriter" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="username" alignment="CENTER" layoutX="67.0" layoutY="132.0" promptText="Username">
+            <TextField fx:id="username" alignment="CENTER" layoutX="66.0" layoutY="78.0" promptText="Username">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="67.0" layoutY="191.0" promptText="Password">
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="66.0" layoutY="144.0" promptText="Password">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" alignment="CENTER" layoutX="52.0" layoutY="249.0" mnemonicParsing="false"
-                    prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;"
-                    text="Login" textFill="WHITE" onMouseClicked="#login">
+            <Button fx:id="backButton" alignment="CENTER" layoutX="52.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="back" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="signUpButton" alignment="CENTER" layoutX="52.0" layoutY="292.0" mnemonicParsing="false"
-                    prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;"
-                    text="Sign Up" textFill="WHITE" onMouseClicked="#signUp">
+            <Button fx:id="signUpButton" alignment="CENTER" layoutX="52.0" layoutY="291.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="messageLabel" alignment="CENTER" layoutX="70.0" layoutY="93.0" prefHeight="18.0"
-                   prefWidth="153.0" textFill="#263f73">
+            <Label fx:id="userMessage" alignment="CENTER" layoutX="70.0" layoutY="60.0" prefHeight="18.0" prefWidth="153.0" text="user" textFill="#263f73">
+               <font>
+                  <Font name="American Typewriter" size="11.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="confirmPass" alignment="CENTER" layoutX="66.0" layoutY="174.0" promptText=" Confirm Password">
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="email" alignment="CENTER" layoutX="66.0" layoutY="235.0" promptText="Email">
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+            </PasswordField>
+            <Label fx:id="passwordMessage" alignment="CENTER" layoutX="70.0" layoutY="126.0" prefHeight="18.0" prefWidth="153.0" text="pass" textFill="#263f73">
+               <font>
+                  <Font name="American Typewriter" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailMessage" alignment="CENTER" layoutX="70.0" layoutY="217.0" prefHeight="18.0" prefWidth="153.0" text="email" textFill="#263f73">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
