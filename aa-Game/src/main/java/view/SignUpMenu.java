@@ -17,4 +17,5 @@ public class SignUpMenu extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 }

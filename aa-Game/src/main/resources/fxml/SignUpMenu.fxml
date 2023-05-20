@@ -65,7 +65,7 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="backButton" alignment="CENTER" layoutX="52.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="back" textFill="WHITE">
+            <Button fx:id="backButton" alignment="CENTER" layoutX="52.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="back" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="userMessage" alignment="CENTER" layoutX="70.0" layoutY="60.0" prefHeight="18.0" prefWidth="153.0" text="user" textFill="#263f73">
+            <Label fx:id="userMessage" alignment="CENTER" layoutX="3.0" layoutY="60.0" prefHeight="18.0" prefWidth="282.0" text="user" textFill="#263f73">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
@@ -90,12 +90,12 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Label fx:id="passwordMessage" alignment="CENTER" layoutX="70.0" layoutY="126.0" prefHeight="18.0" prefWidth="153.0" text="pass" textFill="#263f73">
+            <Label fx:id="passwordMessage" alignment="CENTER" layoutX="3.0" layoutY="126.0" prefHeight="18.0" prefWidth="282.0" text="pass" textFill="#263f73">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
             </Label>
-            <Label fx:id="emailMessage" alignment="CENTER" layoutX="70.0" layoutY="217.0" prefHeight="18.0" prefWidth="153.0" text="email" textFill="#263f73">
+            <Label fx:id="emailMessage" alignment="CENTER" layoutX="4.0" layoutY="217.0" prefHeight="18.0" prefWidth="283.0" text="email" textFill="#263f73">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
