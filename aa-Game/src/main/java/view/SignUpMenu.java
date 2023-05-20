@@ -5,23 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import utility.DataClass;
 
 import java.net.URL;
 
-public class LoginMenu extends Application {
-
+public class SignUpMenu extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        DataClass.setStage(stage);
-        URL url = LoginMenu.class.getResource("/fxml/LoginMenu.fxml");
+        URL url = SignUpMenu.class.getResource("/fxml/SignUpMenu.fxml");
         BorderPane borderPane = FXMLLoader.load(url);
         Scene scene = new Scene(borderPane,520,400);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

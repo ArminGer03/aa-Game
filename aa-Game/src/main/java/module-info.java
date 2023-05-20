@@ -1,5 +1,4 @@
 module aa.Game {
-
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -7,6 +6,4 @@ module aa.Game {
     opens view to javafx.fxml;
     exports view.Contollers;
     opens view.Contollers to javafx.fxml;
-
-
 }

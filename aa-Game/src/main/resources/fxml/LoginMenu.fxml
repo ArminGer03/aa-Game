@@ -78,7 +78,7 @@
                   <Font name="American Typewriter" size="11.0" />
                </font>
             </Label>
-            <Button fx:id="quickGameButton" alignment="CENTER" layoutX="52.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Quick Game" textFill="WHITE">
+            <Button fx:id="quickGameButton" alignment="CENTER" layoutX="52.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#quickGame" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Quick Game" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
