@@ -5,7 +5,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Circle?>
@@ -46,41 +45,35 @@
          </children>
       </AnchorPane>
    </left>
-   <right>
+   <center>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="109.0" layoutY="45.0" text="Login Menu">
+            <Label alignment="CENTER" layoutX="90.0" layoutY="51.0" text="Login Menu">
                <font>
                   <Font name="American Typewriter" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" alignment="CENTER" layoutX="90.0" layoutY="128.0" promptText="Username">
+            <TextField fx:id="usernameField" alignment="CENTER" layoutX="67.0" layoutY="132.0" promptText="Username">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="90.0" layoutY="187.0" promptText="Password">
+            <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="67.0" layoutY="191.0" promptText="Password">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="71.0" layoutY="245.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Login">
+            <Button fx:id="loginButton" alignment="CENTER" layoutX="52.0" layoutY="249.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Login" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold Italic" size="13.0" />
+                  <Font name="Arial Bold" size="13.0" />
                </font>
-               <effect>
-                  <DropShadow />
-               </effect>
             </Button>
-            <Button fx:id="signUpButton" layoutX="71.0" layoutY="285.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Sign Up">
+            <Button fx:id="signUpButton" alignment="CENTER" layoutX="52.0" layoutY="292.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Sign Up" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold Italic" size="13.0" />
+                  <Font name="Arial Bold" size="13.0" />
                </font>
-               <effect>
-                  <DropShadow />
-               </effect>
             </Button>
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>
