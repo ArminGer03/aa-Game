@@ -22,10 +22,10 @@ public class LoginMenuGController {
 
 
     public void signUp(MouseEvent mouseEvent) {
-
+        //todo change menu
     }
 
     public void login(MouseEvent mouseEvent) {
-        messageLabel.setText( username.getText() + "    " + password.getText() );
+        //todo check login via controller
     }
 }
