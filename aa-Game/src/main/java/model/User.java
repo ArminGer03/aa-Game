@@ -1,5 +1,7 @@
 package model;
 
+import utility.DataClass;
+import utility.DataLoader;
 import utility.SHA;
 
 import java.lang.reflect.Constructor;
@@ -13,6 +15,8 @@ public class User {
         this.username = username;
         setPassword(password);
         this.email = email;
+        DataClass.addUser(this);
+        DataLoader.saveUsers();
     }
 
     private void setPassword(String password) {

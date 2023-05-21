@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import model.User;
 import utility.DataClass;
 import utility.Regexes;
 import view.LoginMenu;
@@ -124,7 +125,7 @@ public class SignUpMenuGController {
             String Username = username.getText();
             String Password = password.getText();
             String Email = email.getText();
-            //todo add user
+            new User(Username,Password,Email);
             //todo switch menu
         }
     }
