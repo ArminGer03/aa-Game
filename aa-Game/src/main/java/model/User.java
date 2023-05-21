@@ -25,4 +25,21 @@ public class User {
     public boolean checkPassword(String passwordToCheck) {
         return SHA.shaString(passwordToCheck).equals(password);
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 }

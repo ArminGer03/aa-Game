@@ -126,6 +126,7 @@ public class SignUpMenuGController {
             String Password = password.getText();
             String Email = email.getText();
             new User(Username,Password,Email);
+            System.out.println(DataClass.getUsers());
             //todo switch menu
         }
     }
