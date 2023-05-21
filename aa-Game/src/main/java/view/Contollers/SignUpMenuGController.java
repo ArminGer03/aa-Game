@@ -1,6 +1,7 @@
 package view.Contollers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -61,6 +62,17 @@ public class SignUpMenuGController {
             else
                 passwordMessage.setText(null);
         });
+        //confirm password label message:
+        confirmPass.textProperty().addListener((observable, oldText, newText)->{
+            if (confirmPass.getText().isEmpty()){
+                passwordMessage.setText("Confirm password is empty!");
+            }
+            else if (!confirmPass.getText().equals(password.getText())){
+                passwordMessage.setText("Confirm password doesn't match with password!");
+            }
+            else
+                passwordMessage.setText(null);
+        });
         //email label message:
         email.textProperty().addListener((observable, oldText, newText)->{
             if (Regexes.getMatcher(newText, Regexes.EMAIL_FORMAT) == null){
@@ -71,8 +83,50 @@ public class SignUpMenuGController {
         });
     }
 
-    public void signUp(MouseEvent mouseEvent) {
+    public void signUp(MouseEvent mouseEvent) throws Exception {
 
+        if (username.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("SignUp Error");
+            alert.setContentText("Your username field is empty");
+            alert.showAndWait();
+        }
+        else if (password.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("SignUp Error");
+            alert.setContentText("Your password field is empty");
+            alert.showAndWait();
+        }
+        else if (confirmPass.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("SignUp Error");
+            alert.setContentText("Your confirm password field is empty");
+            alert.showAndWait();
+        }
+        else if (email.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("SignUp Error");
+            alert.setContentText("Your email field is empty");
+            alert.showAndWait();
+        }
+        else if ((userMessage.getText() != null) || (passwordMessage.getText() != null) || (emailMessage.getText() != null)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("SignUp Error");
+            alert.setContentText("One of the fields are invalid");
+            alert.showAndWait();
+        }
+        else {
+            String Username = username.getText();
+            String Password = password.getText();
+            String Email = email.getText();
+            //todo add user
+            //todo switch menu
+        }
     }
 
     public void back(MouseEvent mouseEvent) throws Exception {
