@@ -39,7 +39,9 @@ public class SignUpMenuGController {
             else if (Regexes.getMatcher(newText, Regexes.USER_FORMAT) != null){
                 userMessage.setText("Username must contain only letters and numbers!");
             }
-            //taken username
+            else if (DataClass.getUserByUsername(newText) != null){
+                userMessage.setText("Username already taken!");
+            }
             else
                 userMessage.setText(null);
         });
@@ -78,6 +80,9 @@ public class SignUpMenuGController {
         email.textProperty().addListener((observable, oldText, newText)->{
             if (Regexes.getMatcher(newText, Regexes.EMAIL_FORMAT) == null){
                 emailMessage.setText("Invalid email format!");
+            }
+            else if (DataClass.getUserByEmail(newText) != null){
+                emailMessage.setText("Email already taken!");
             }
             else
                 emailMessage.setText(null);
