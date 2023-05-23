@@ -2,10 +2,7 @@ package view.Contollers;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utility.DataClass;
@@ -21,6 +18,8 @@ public class LoginMenuGController {
     private Label messageLabel;
     @FXML
     private Button loginButton ;
+    @FXML
+    private Hyperlink forgotPass;
 
 
 
@@ -34,5 +33,9 @@ public class LoginMenuGController {
 
     public void quickGame(MouseEvent mouseEvent) {
         //todo make a quick game
+    }
+
+    public void forgotPassword(MouseEvent mouseEvent) {
+        //todo change menu to forgot menu
     }
 }
