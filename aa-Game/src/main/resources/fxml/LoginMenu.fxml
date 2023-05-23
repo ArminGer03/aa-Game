@@ -74,7 +74,7 @@
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="messageLabel" alignment="CENTER" layoutX="70.0" layoutY="93.0" prefHeight="18.0" prefWidth="153.0" textFill="#263f73">
+            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="94.0" prefHeight="18.0" prefWidth="258.0" textFill="#263f73">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
