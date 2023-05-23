@@ -2,6 +2,7 @@ package model;
 
 import utility.DataClass;
 import utility.DataLoader;
+import utility.RandomGenerator;
 import utility.SHA;
 
 import java.lang.reflect.Constructor;
@@ -17,7 +18,7 @@ public class User {
         setPassword(password);
         this.email = email;
         DataClass.addUser(this);
-        //todo get random avatar
+        this.imagePath = RandomGenerator.randomImagePath();
         DataLoader.saveUsers();
     }
 

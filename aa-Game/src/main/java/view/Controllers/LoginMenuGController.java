@@ -3,8 +3,10 @@ package view.Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import model.User;
 import utility.DataClass;
 import view.ForgotMenu;
+import view.MainMenu;
 import view.SignUpMenu;
 
 public class LoginMenuGController {
@@ -81,7 +83,9 @@ public class LoginMenuGController {
             alert.showAndWait();
         }
         else {
-            //todo change menu to profile menu
+            User user = DataClass.getUserByUsername(username.getText());
+            DataClass.setCurrentUser(user);
+            new MainMenu().start(DataClass.getStage());
         }
     }
 

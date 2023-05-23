@@ -18,5 +18,11 @@
     "username": "FirstOne",
     "password": "b915bc5857f6d13edce8f2e7d5661d70563c1fb2354af1ff22e36d7b71e1f3c3",
     "email": "first.first@first.com"
+  },
+  {
+    "username": "TestImage",
+    "password": "fb6fb1940dca7b8adda350df75b35312b8cff230c7ed3f7790c5fd567e02c766",
+    "email": "t.t@t.com",
+    "imagePath": "/images/pic3.jpeg"
   }
 ]
