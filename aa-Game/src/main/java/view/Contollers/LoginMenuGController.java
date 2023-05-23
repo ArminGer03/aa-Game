@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utility.DataClass;
+import view.ForgotMenu;
+import view.LoginMenu;
 import view.SignUpMenu;
 
 public class LoginMenuGController {
@@ -27,15 +29,15 @@ public class LoginMenuGController {
         new SignUpMenu().start(DataClass.getStage());
     }
 
-    public void login(MouseEvent mouseEvent) {
-        //todo check login via controller
+    public void login(MouseEvent mouseEvent) throws Exception {
+        //todo check login
     }
 
     public void quickGame(MouseEvent mouseEvent) {
         //todo make a quick game
     }
 
-    public void forgotPassword(MouseEvent mouseEvent) {
-        //todo change menu to forgot menu
+    public void forgotPassword(MouseEvent mouseEvent) throws Exception {
+        new ForgotMenu().start(DataClass.getStage());
     }
 }

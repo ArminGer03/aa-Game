@@ -19,8 +19,9 @@ public class User {
         DataLoader.saveUsers();
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = SHA.shaString(password);
+        DataLoader.saveUsers();
     }
     public boolean checkPassword(String passwordToCheck) {
         return SHA.shaString(passwordToCheck).equals(password);
@@ -30,16 +31,10 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
 }

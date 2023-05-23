@@ -63,22 +63,22 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="changeButton" alignment="CENTER" layoutX="52.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Change Password" textFill="WHITE">
+            <Button fx:id="changeButton" alignment="CENTER" layoutX="52.0" layoutY="303.0" mnemonicParsing="false" onMouseClicked="#changePass" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Change Password" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="userLabel" alignment="CENTER" layoutX="70.0" layoutY="71.0" prefHeight="18.0" prefWidth="153.0" textFill="#263f73">
+            <Label fx:id="userLabel" alignment="CENTER" layoutX="26.0" layoutY="71.0" prefHeight="18.0" prefWidth="243.0" textFill="#263f73">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
             </Label>
-            <Button fx:id="back" alignment="CENTER" layoutX="52.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#quickGame" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Back" textFill="WHITE">
+            <Button fx:id="backButton" alignment="CENTER" layoutX="52.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="31.0" prefWidth="189.0" style="-fx-background-color: #263f73;" text="Back" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <TextField fx:id="username1" alignment="CENTER" layoutX="67.0" layoutY="122.0" promptText="Email">
+            <TextField fx:id="email" alignment="CENTER" layoutX="67.0" layoutY="122.0" promptText="Email">
                <font>
                   <Font name="American Typewriter" size="13.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font name="American Typewriter" size="13.0" />
                </font>
             </PasswordField>
-            <Label fx:id="passLabel" alignment="CENTER" layoutX="71.0" layoutY="176.0" prefHeight="18.0" prefWidth="153.0" textFill="#263f73">
+            <Label fx:id="passLabel" alignment="CENTER" layoutX="30.0" layoutY="176.0" prefHeight="18.0" prefWidth="235.0" textFill="#263f73">
                <font>
                   <Font name="American Typewriter" size="11.0" />
                </font>
