@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controllers.ProfileMenuGController">
    <children>
       <Label alignment="CENTER" layoutX="86.0" layoutY="33.0" prefHeight="17.0" prefWidth="105.0" text="Username" textFill="#263f73" />
       <Label alignment="CENTER" layoutY="95.0" prefHeight="20.0" prefWidth="150.0" text="Change Username: " textFill="#263f73">
@@ -64,8 +63,8 @@
          </image>
       </ImageView>
       <CheckBox layoutX="301.0" layoutY="225.0" mnemonicParsing="false" />
-      <Button layoutX="137.0" layoutY="266.0" mnemonicParsing="false" text="image from drive" />
-      <ImageView fitHeight="49.0" fitWidth="53.0" layoutX="34.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="137.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#getImage" text="image from drive" />
+      <ImageView fx:id="profileImageView" fitHeight="49.0" fitWidth="53.0" layoutX="34.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <TextField layoutX="149.0" layoutY="92.0" prefHeight="26.0" prefWidth="113.0" promptText="New Username" />
    </children>
 </AnchorPane>

@@ -10,12 +10,14 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String imagePath;
 
     public User(String username, String password, String email) {
         this.username = username;
         setPassword(password);
         this.email = email;
         DataClass.addUser(this);
+        //todo get random avatar
         DataLoader.saveUsers();
     }
 
@@ -36,5 +38,17 @@ public class User {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+        DataLoader.saveUsers();
+    }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+        DataLoader.saveUsers();
+    }
 }
