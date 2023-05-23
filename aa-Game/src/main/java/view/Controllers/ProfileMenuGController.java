@@ -1,10 +1,7 @@
 package view.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,13 +20,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ProfileMenuGController {
-    User currentUser = DataClass.getCurrentUser();
+    //User currentUser = DataClass.getCurrentUser();
+    User currentUser = DataClass.getUserByUsername("TestImage");
     @FXML
     private ImageView profileImageView;
     @FXML
     private Label userLabel;
     @FXML
+    private Label errorUser;
+    @FXML
+    private Label errorPass;
+    @FXML
     private TextField newUsername;
+    @FXML
+    private PasswordField newPassword;
+    @FXML
+    private PasswordField confirmPassword;
     @FXML
     private CheckBox check0;
     @FXML
@@ -70,19 +76,49 @@ public class ProfileMenuGController {
                 break;
         }
         //user textField listener
-        //username label message:
         newUsername.textProperty().addListener((observable, oldText, newText)->{
             if (newText.length() < 6){
-                newUsername.setText("Username must be bigger than 5 characters!");
+                errorUser.setText("Username must be bigger than 5 characters!");
             }
             else if (Regexes.getMatcher(newText, Regexes.USER_FORMAT) != null){
-                newUsername.setText("Username must contain only letters and numbers!");
+                errorUser.setText("Username must contain only letters and numbers!");
             }
             else if (DataClass.getUserByUsername(newText) != null){
-                newUsername.setText("Username already taken!");
+                errorUser.setText("Username already taken!");
             }
             else
-                newUsername.setText(null);
+                errorUser.setText(null);
+        });
+        //password label message:
+        newPassword.textProperty().addListener((observable, oldText, newText)->{
+            if (newText.length() < 6){
+                errorPass.setText("Password must be bigger than 5 characters!");
+            }
+            else if (Regexes.getMatcher(newText, Regexes.PASS_UPPER) == null){
+                errorPass.setText("Password must contain at least one uppercase letter!");
+            }
+            else if (Regexes.getMatcher(newText, Regexes.PASS_LOWER) == null){
+                errorPass.setText("Password must contain at least one lowercase letter!");
+            }
+            else if (Regexes.getMatcher(newText, Regexes.PASS_DIGIT) == null){
+                errorPass.setText("Password must contain at least one number!");
+            }
+            else if (Regexes.getMatcher(newText, Regexes.PASS_NO_SPACE) == null){
+                errorPass.setText("Password cant have spaces!");
+            }
+            else
+                errorPass.setText(null);
+        });
+        //confirm password label message:
+        confirmPassword.textProperty().addListener((observable, oldText, newText)->{
+            if (confirmPassword.getText().isEmpty()){
+                errorPass.setText("Confirm password is empty!");
+            }
+            else if (!confirmPassword.getText().equals(newPassword.getText())){
+                errorPass.setText("Confirm password doesn't match with password!");
+            }
+            else
+                errorPass.setText(null);
         });
     }
 
@@ -170,5 +206,34 @@ public class ProfileMenuGController {
         String path = String.valueOf(LoginMenu.class.getResource(currentUser.getImagePath()));
         Image avatar = new Image(path);
         profileImageView.setImage(avatar);
+    }
+
+    public void change(MouseEvent mouseEvent) {
+        if (!newUsername.getText().isEmpty() && errorUser.getText() == null){
+            currentUser.setUsername(newUsername.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Successful!");
+            alert.setHeaderText("change user");
+            alert.setContentText("Your username was changed successfully!");
+            alert.showAndWait();
+        }
+        if (!newPassword.getText().isEmpty() && !confirmPassword.getText().isEmpty() && errorPass.getText() == null){
+            currentUser.setPassword(newPassword.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Successful!");
+            alert.setHeaderText("change pass");
+            alert.setContentText("Your password was changed successfully!");
+            alert.showAndWait();
+        }
+        if (errorUser.getText() != null || errorUser.getText() != null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("failed");
+            alert.setContentText("One of the fields are incorrect!");
+            alert.showAndWait();
+        }
+        newUsername.setText("");
+        newPassword.setText("");
+        confirmPassword.setText("");
     }
 }
