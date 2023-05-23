@@ -131,8 +131,12 @@ public class SignUpMenuGController {
             String Password = password.getText();
             String Email = email.getText();
             new User(Username,Password,Email);
-            System.out.println(DataClass.getUsers());
-            //todo switch menu
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Successful!");
+            alert.setHeaderText("SignUp");
+            alert.setContentText("Your account was made successfully");
+            alert.showAndWait();
+            new LoginMenu().start(DataClass.getStage());
         }
     }
 
