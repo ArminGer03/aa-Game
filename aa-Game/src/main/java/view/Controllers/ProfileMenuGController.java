@@ -225,7 +225,7 @@ public class ProfileMenuGController {
             alert.setContentText("Your password was changed successfully!");
             alert.showAndWait();
         }
-        if (errorUser.getText() != null || errorUser.getText() != null){
+        if (errorUser.getText() != null || errorPass.getText() != null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
             alert.setHeaderText("failed");
@@ -235,5 +235,7 @@ public class ProfileMenuGController {
         newUsername.setText("");
         newPassword.setText("");
         confirmPassword.setText("");
+        errorUser.setText(null);
+        errorPass.setText(null);
     }
 }
