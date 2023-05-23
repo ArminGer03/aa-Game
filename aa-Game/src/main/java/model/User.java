@@ -12,13 +12,15 @@ public class User {
     private String password;
     private String email;
     private String imagePath;
+    private int imageNumber;
 
     public User(String username, String password, String email) {
         this.username = username;
         setPassword(password);
         this.email = email;
         DataClass.addUser(this);
-        this.imagePath = RandomGenerator.randomImagePath();
+        this.imageNumber = RandomGenerator.randomNumber(0,3);
+        this.imagePath = RandomGenerator.randomImagePath(this.imageNumber);
         DataLoader.saveUsers();
     }
 
@@ -48,8 +50,13 @@ public class User {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
+    public int getImageNumber() {
+        return imageNumber;
+    }
+
+    public void setImage(String imagePath,int imageNumber) {
         this.imagePath = imagePath;
+        this.imageNumber = imageNumber;
         DataLoader.saveUsers();
     }
 }

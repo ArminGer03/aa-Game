@@ -1,28 +1,9 @@
 [
   {
-    "username": "bob esfanji",
-    "password": "23ddda4810068cc44360dffd31b6c5a9ad13fb9e6a69c9354a5d1b07f1b9843f",
-    "email": "okhtapoos"
-  },
-  {
-    "username": "Kamran",
-    "password": "f4109060f44015b75107db8a7721f57e55b00870f12f07e39cfee2bb6fa75adb",
-    "email": "kamrna@yahoo.com"
-  },
-  {
-    "username": "Kamran1",
-    "password": "c8d193fd5c7aa8974305fc9975e5819a0aeca98055933a3bf6da2190f111da11",
-    "email": "kamrna@yahoo.comm"
-  },
-  {
-    "username": "FirstOne",
-    "password": "b915bc5857f6d13edce8f2e7d5661d70563c1fb2354af1ff22e36d7b71e1f3c3",
-    "email": "first.first@first.com"
-  },
-  {
     "username": "TestImage",
     "password": "fb6fb1940dca7b8adda350df75b35312b8cff230c7ed3f7790c5fd567e02c766",
     "email": "t.t@t.com",
-    "imagePath": "/images/pic3.jpeg"
+    "imagePath": "/images/logo.png",
+    "imageNumber": -1
   }
 ]

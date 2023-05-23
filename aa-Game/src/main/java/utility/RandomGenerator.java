@@ -1,7 +1,10 @@
 package utility;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 public class RandomGenerator {
-    public static String randomImagePath()
+    public static String randomImagePath(int n)
     {
         String[] paths =
                 {
@@ -10,8 +13,7 @@ public class RandomGenerator {
                         "/images/pic3.jpeg",
                         "/images/pic4.jpeg"
                 };
-
-        return paths[randomNumber(0, paths.length - 1)];
+        return paths[n];
     }
 
     public static int randomNumber(int min, int max)

@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controllers.ProfileMenuGController">
    <children>
-      <Label alignment="CENTER" layoutX="86.0" layoutY="33.0" prefHeight="17.0" prefWidth="105.0" text="Username" textFill="#263f73" />
+      <Label fx:id="userLabel" alignment="CENTER" layoutX="86.0" layoutY="33.0" prefHeight="17.0" prefWidth="105.0" textFill="#263f73" />
       <Label alignment="CENTER" layoutY="95.0" prefHeight="20.0" prefWidth="150.0" text="Change Username: " textFill="#263f73">
          <font>
             <Font size="15.0" />
@@ -38,33 +38,33 @@
             <Font name="American Typewriter" size="13.0" />
          </font>
       </PasswordField>
-      <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="121.0" layoutY="65.0" prefHeight="20.0" prefWidth="217.0" text="Errormessage!" textAlignment="CENTER" textFill="#942020" />
+      <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="121.0" layoutY="65.0" prefHeight="20.0" prefWidth="217.0" textAlignment="CENTER" textFill="#942020" />
       <ImageView fitHeight="49.0" fitWidth="53.0" layoutX="40.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pic1.jpeg" />
          </image>
       </ImageView>
-      <CheckBox layoutX="58.0" layoutY="225.0" mnemonicParsing="false" />
+      <CheckBox fx:id="check0" layoutX="58.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#checkBoxCheck" />
       <ImageView fitHeight="49.0" fitWidth="53.0" layoutX="124.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pic2.jpeg" />
          </image>
       </ImageView>
-      <CheckBox layoutX="142.0" layoutY="225.0" mnemonicParsing="false" />
+      <CheckBox fx:id="check1" layoutX="142.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#checkBoxCheck" />
       <ImageView fitHeight="49.0" fitWidth="53.0" layoutX="203.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pic3.jpeg" />
          </image>
       </ImageView>
-      <CheckBox layoutX="221.0" layoutY="225.0" mnemonicParsing="false" />
+      <CheckBox fx:id="check2" layoutX="221.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#checkBoxCheck" />
       <ImageView fitHeight="49.0" fitWidth="53.0" layoutX="283.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/pic4.jpeg" />
          </image>
       </ImageView>
-      <CheckBox layoutX="301.0" layoutY="225.0" mnemonicParsing="false" />
+      <CheckBox fx:id="check3" layoutX="301.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#checkBoxCheck" />
       <Button layoutX="137.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#getImage" text="image from drive" />
       <ImageView fx:id="profileImageView" fitHeight="49.0" fitWidth="53.0" layoutX="34.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField layoutX="149.0" layoutY="92.0" prefHeight="26.0" prefWidth="113.0" promptText="New Username" />
+      <TextField fx:id="newUsername" layoutX="149.0" layoutY="92.0" prefHeight="26.0" prefWidth="113.0" promptText="New Username" />
    </children>
 </AnchorPane>
