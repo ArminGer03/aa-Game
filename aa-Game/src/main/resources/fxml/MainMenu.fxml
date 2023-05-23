@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controllers.MainMenuGController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controllers.MainMenuGController">
    <left>
       <VBox prefHeight="400.0" prefWidth="126.0" style="-fx-background-color: #263f73;" BorderPane.alignment="CENTER">
          <children>
@@ -40,7 +40,7 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="MainPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="129.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="32.0" prefWidth="166.0" style="-fx-background-color: #263f73;" text="Start New Game" textAlignment="CENTER" textFill="WHITE">
                <font>
