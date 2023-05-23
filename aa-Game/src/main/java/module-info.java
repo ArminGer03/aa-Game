@@ -5,7 +5,7 @@ module aa.Game {
 
     exports view;
     opens view to javafx.fxml;
-    exports view.Contollers;
-    opens view.Contollers to javafx.fxml;
+    exports view.Controllers;
+    opens view.Controllers to javafx.fxml;
     opens model to com.google.gson;
 }

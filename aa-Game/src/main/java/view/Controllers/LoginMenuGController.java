@@ -1,15 +1,10 @@
-package view.Contollers;
+package view.Controllers;
 
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import model.User;
 import utility.DataClass;
-import utility.Regexes;
 import view.ForgotMenu;
-import view.LoginMenu;
 import view.SignUpMenu;
 
 public class LoginMenuGController {

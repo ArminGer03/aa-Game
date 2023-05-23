@@ -1,4 +1,4 @@
-package view.Contollers;
+package view.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,7 +10,6 @@ import model.User;
 import utility.DataClass;
 import utility.Regexes;
 import view.LoginMenu;
-import view.SignUpMenu;
 
 public class SignUpMenuGController {
     @FXML
