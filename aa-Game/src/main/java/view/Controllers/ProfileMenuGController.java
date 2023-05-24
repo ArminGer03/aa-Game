@@ -244,8 +244,6 @@ public class ProfileMenuGController {
             currentUser = null;
             DataClass.setCurrentUser(null);
             new LoginMenu().start(DataClass.getStage());
-        } else {
-           System.out.println("Cancelled!");
         }
     }
 }

@@ -1,17 +1,24 @@
 package view.Controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import utility.DataClass;
+import utility.DataLoader;
+import view.LoginMenu;
 import view.MainMenu;
 import view.SignUpMenu;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 
 public class MainMenuGController {
 
@@ -39,6 +46,16 @@ public class MainMenuGController {
     }
 
     public void exit(MouseEvent mouseEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Program");
+        alert.setHeaderText("Are you sure you want to exit?");
+        alert.setContentText("Any unsaved data would be lost.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            DataClass.setCurrentUser(null);
+            Platform.exit();
+        }
     }
 
     public void startGame(MouseEvent mouseEvent) {
