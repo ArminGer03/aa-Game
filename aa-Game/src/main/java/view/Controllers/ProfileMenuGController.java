@@ -15,7 +15,6 @@ import view.LoginMenu;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -56,25 +55,17 @@ public class ProfileMenuGController {
         profileImageView.setImage(avatar);
 
         //set available avatars
-        switch (currentUser.getImageNumber()){
-            case 0:
-                check0.setVisible(false);
-                break;
-            case 1:
-                check1.setVisible(false);
-                break;
-            case 2:
-                check2.setVisible(false);
-                break;
-            case 3:
-                check3.setVisible(false);
-                break;
-            default:
+        switch (currentUser.getImageNumber()) {
+            case 0 -> check0.setVisible(false);
+            case 1 -> check1.setVisible(false);
+            case 2 -> check2.setVisible(false);
+            case 3 -> check3.setVisible(false);
+            default -> {
                 check0.setVisible(true);
                 check1.setVisible(true);
                 check2.setVisible(true);
                 check3.setVisible(true);
-                break;
+            }
         }
         //user textField listener
         newUsername.textProperty().addListener((observable, oldText, newText)->{
@@ -172,37 +163,37 @@ public class ProfileMenuGController {
         check2.setSelected(false);
         check3.setSelected(false);
 
-        switch (currentUser.getImageNumber()){
-            case 0:
+        switch (currentUser.getImageNumber()) {
+            case 0 -> {
                 check0.setVisible(false);
                 check1.setVisible(true);
                 check2.setVisible(true);
                 check3.setVisible(true);
-                break;
-            case 1:
+            }
+            case 1 -> {
                 check0.setVisible(true);
                 check1.setVisible(false);
                 check2.setVisible(true);
                 check3.setVisible(true);
-                break;
-            case 2:
+            }
+            case 2 -> {
                 check0.setVisible(true);
                 check1.setVisible(true);
                 check2.setVisible(false);
                 check3.setVisible(true);
-                break;
-            case 3:
+            }
+            case 3 -> {
                 check0.setVisible(true);
                 check1.setVisible(true);
                 check2.setVisible(true);
                 check3.setVisible(false);
-                break;
-            default:
+            }
+            default -> {
                 check0.setVisible(true);
                 check1.setVisible(true);
                 check2.setVisible(true);
                 check3.setVisible(true);
-                break;
+            }
         }
         String path = String.valueOf(LoginMenu.class.getResource(currentUser.getImagePath()));
         Image avatar = new Image(path);
