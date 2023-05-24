@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import model.User;
 import utility.DataClass;
+import utility.DataLoader;
 import utility.RandomGenerator;
 import utility.Regexes;
 import view.LoginMenu;
@@ -18,10 +19,10 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 public class ProfileMenuGController {
-    //User currentUser = DataClass.getCurrentUser();
-    User currentUser = DataClass.getUserByUsername("TestImage");
+    User currentUser = DataClass.getCurrentUser();
     @FXML
     private ImageView profileImageView;
     @FXML
@@ -237,5 +238,23 @@ public class ProfileMenuGController {
         confirmPassword.setText("");
         errorUser.setText(null);
         errorPass.setText(null);
+    }
+
+    public void deleteUser(MouseEvent mouseEvent) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Are you sure you want to delete this user?");
+        alert.setContentText("This action cannot be undone.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            DataClass.getUsers().remove(currentUser);
+            DataLoader.saveUsers();
+            currentUser = null;
+            DataClass.setCurrentUser(null);
+            new LoginMenu().start(DataClass.getStage());
+        } else {
+           System.out.println("Cancelled!");
+        }
     }
 }

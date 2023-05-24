@@ -18,9 +18,9 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="135.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#change" prefHeight="13.0" prefWidth="113.0" style="-fx-background-color: #263f73;" text="Save changes" textFill="WHITE">
+      <Button layoutX="135.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#change" prefHeight="13.0" prefWidth="113.0" style="-fx-background-color: #263f73;" text="Save Changes" textFill="WHITE">
          <font>
-            <Font size="11.0" />
+            <Font size="12.0" />
          </font>
       </Button>
       <Label alignment="CENTER" layoutY="133.0" prefHeight="20.0" prefWidth="113.0" text="Change Pass: " textFill="#263f73">
@@ -63,9 +63,14 @@
          </image>
       </ImageView>
       <CheckBox fx:id="check3" layoutX="301.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#checkBoxCheck" />
-      <Button layoutX="137.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#getImage" text="image from drive" />
+      <Button layoutX="137.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#getImage" style="-fx-background-color: grey;" text="Image from drive" textFill="WHITE" />
       <ImageView fx:id="profileImageView" fitHeight="49.0" fitWidth="53.0" layoutX="34.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="newUsername" layoutX="149.0" layoutY="92.0" prefHeight="26.0" prefWidth="113.0" promptText="New Username" />
       <Label fx:id="errorUser" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="50.0" prefHeight="20.0" prefWidth="235.0" textAlignment="CENTER" textFill="#942020" />
+      <Button layoutX="137.0" layoutY="304.0" mnemonicParsing="false" onMouseClicked="#deleteUser" prefHeight="18.0" prefWidth="108.0" style="-fx-background-color: #942020;" text="Delet User" textFill="WHITE">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
