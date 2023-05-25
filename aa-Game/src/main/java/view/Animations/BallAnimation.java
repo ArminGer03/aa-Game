@@ -22,12 +22,12 @@ public class BallAnimation extends Transition {
 
     @Override
     protected void interpolate(double v) {
-        double y = ball.getCenterY() - 5;
+        double y = ball.getCircle().getCenterY() - 5;
 
         if (y <= 20) {
             pane.getChildren().remove(ball);
             this.stop();
         }
-        ball.setCenterY(y);
+        ball.getCircle().setCenterY(y);
     }
 }
