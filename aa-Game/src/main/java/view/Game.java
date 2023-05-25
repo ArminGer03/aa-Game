@@ -1,5 +1,6 @@
 package view;
 
+import contoller.GameController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,46 +13,54 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Ball;
+import model.Shooter;
 import view.Animations.BallAnimation;
 
 import java.net.URL;
+import java.util.Enumeration;
 
 
 public class Game extends Application {
 
+    public static GameController gameController;
+    public static int BALLS = 10;
+    public static int shotBalls = 0;
+
 
     @Override
     public void start(Stage stage) throws Exception {
+        //todo new gameController
+        gameController = new GameController("salam");
 
         URL url = LoginMenu.class.getResource("/fxml/gamePane.fxml");
         Pane gamePane = FXMLLoader.load(url);
-        Scene scene = new Scene(gamePane,650,800);
+        Scene scene = new Scene(gamePane,500,800);
 
+        Shooter shooter = createShooter(gamePane);
+        gamePane.getChildren().add(shooter);
 
-        Ball ball = createBall(gamePane);
-
-        //gamePane.getChildren().add(ball);
-
-        ballShooting(gamePane,ball);
-
+        gamePane.getChildren().get(0).requestFocus();
         stage.setScene(scene);
         stage.show();
     }
 
-    private Ball createBall(Pane gamePane) {
-        Ball ball = new Ball(325,600,10);
+    private Shooter createShooter(Pane gamePane) {
+        Shooter shooter = new Shooter(250,600,10,200);
+        shooter.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                String keyName = keyEvent.getCode().getName();
 
-//        ball.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent keyEvent) {
-//                String keyName = keyEvent.getCode().getName();
-//
-////                if (keyName.equals("Space"))
-////                    Game.gameController.shoot(rocket, gamePane);
-//            }
-//        });
+                if (keyName.equals("Left"))
+                    Game.gameController.moveLeft(shooter);
+                else if (keyName.equals("Right"))
+                    Game.gameController.moveRight(shooter);
+//                else if (keyName.equals("Space"))
+//                    Game.gameController.shoot(shooter, gamePane);
+            }
+        });
 
-        return ball;
+        return shooter;
     }
 
     private void ballShooting(Pane gamePane , Ball ball) {
