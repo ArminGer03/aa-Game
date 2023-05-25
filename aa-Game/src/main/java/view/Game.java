@@ -42,7 +42,7 @@ public class Game extends Application {
         Ball[] balls = createBalls(BALLS_COUNT);
         Shooter shooter = createShooter(gamePane,balls);
         Bounds bounds = shooter.getBoundsInParent();
-        setBallsPositionInShooter(BALLS_COUNT - shotBalls,bounds,balls);
+        setBallsPositionInShooter(bounds,balls);
 
 
 
@@ -61,23 +61,19 @@ public class Game extends Application {
             public void handle(KeyEvent keyEvent) {
                 String keyName = keyEvent.getCode().getName();
 
-
                 if (keyName.equals("Left")){
                     Game.gameController.moveLeft(shooter);
-                    Bounds bounds = shooter.getBoundsInParent();
-                    setBallsPositionInShooter(BALLS_COUNT - shotBalls,bounds,balls);
                 }
-
                 else if (keyName.equals("Right")){
                     Game.gameController.moveRight(shooter);
-                    Bounds bounds = shooter.getBoundsInParent();
-                    setBallsPositionInShooter(BALLS_COUNT - shotBalls,bounds,balls);
+                }
+                else if (keyName.equals("Space")){
+                    Game.gameController.ballShooting(gamePane , balls);
                 }
 
-//                else if (keyName.equals("Space"))
-//                    Game.gameController.shoot(shooter, gamePane);
+                Bounds bounds = shooter.getBoundsInParent();
+                setBallsPositionInShooter(bounds,balls);
 
-                //gamePane.getChildren().add(ball);
             }
         });
 
@@ -94,30 +90,22 @@ public class Game extends Application {
         return balls;
     }
 
-    private void setBallsPositionInShooter(int count, Bounds bounds, Ball[] balls){
-        //set first 5 balls in shooter
-        for (int i = 0; i < 5 ; i++){
+    private void setBallsPositionInShooter( Bounds bounds, Ball[] balls){
+
+        for (int i = shotBalls; i < BALLS_COUNT ; i++){
             balls[i].getCircle().setCenterX(bounds.getMinX() + bounds.getWidth() / 2);
-            balls[i].getCircle().setCenterY(bounds.getMinY() + i * bounds.getHeight() / 5);
+            if (shotBalls < 5){
+                if (i > 5 + shotBalls)
+                    balls[i].getCircle().setCenterY(bounds.getMaxY());
+                else
+                    balls[i].getCircle().setCenterY(bounds.getMinY() + (i - shotBalls) * bounds.getHeight() / 5);
+            }
+            else{
+                balls[i].getCircle().setCenterY(bounds.getMinY() + (i - shotBalls) * bounds.getHeight() / 5);
+            }
         }
-
-        //set other balls at the bottom
-
-        for (int i = 5; i < BALLS_COUNT ; i++){
-            balls[i].getCircle().setCenterX(bounds.getMinX() + bounds.getWidth() / 2);
-            balls[i].getCircle().setCenterY(bounds.getMaxY());
-        }
-
     }
 
-    private void ballShooting(Pane gamePane , Ball ball) {
-        //gameController.setMeteorite(meteorite);
-        gamePane.getChildren().add(ball);
-        BallAnimation ballAnimation =
-                new BallAnimation(ball,gamePane);
-        ball.setBallAnimation(ballAnimation);
-        ballAnimation.play();
-    }
 
     public static void main(String[] args) {
         launch(args);
