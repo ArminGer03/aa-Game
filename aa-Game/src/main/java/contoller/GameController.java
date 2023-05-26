@@ -1,7 +1,9 @@
 package contoller;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import model.Ball;
+import model.MainCircle;
 import model.Shooter;
 import view.Animations.BallAnimation;
 import view.Game;
@@ -10,8 +12,10 @@ public class GameController {
 
     private String username;
 
-    public GameController(String username) {
-        this.username = username;
+    private Circle borderCircle;
+
+    public GameController(Circle borderCircle) {
+        this.borderCircle = borderCircle;
     }
     public void moveLeft(Shooter shooter) {
         if (shooter.getX() > 60)
@@ -33,4 +37,7 @@ public class GameController {
         }
     }
 
+    public Circle getBorderCircle() {
+        return borderCircle;
+    }
 }

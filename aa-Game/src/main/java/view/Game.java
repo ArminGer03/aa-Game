@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Ball;
+import model.MainCircle;
 import model.Shooter;
 import view.Animations.BallAnimation;
 
@@ -32,13 +33,13 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //todo new gameController
-        gameController = new GameController("salam");
 
         URL url = LoginMenu.class.getResource("/fxml/gamePane.fxml");
         Pane gamePane = FXMLLoader.load(url);
         Scene scene = new Scene(gamePane,500,800);
 
+        MainCircle mainCircle = new MainCircle(250 , 350);
+        gameController = new GameController(mainCircle.getCircleBorder());
         Ball[] balls = createBalls(BALLS_COUNT);
         Shooter shooter = createShooter(gamePane,balls);
         Bounds bounds = shooter.getBoundsInParent();
@@ -46,8 +47,9 @@ public class Game extends Application {
 
 
 
-        gamePane.getChildren().addAll(shooter);
+        gamePane.getChildren().add(shooter);
         gamePane.getChildren().addAll(balls);
+        gamePane.getChildren().add(mainCircle);
 
         gamePane.getChildren().get(0).requestFocus();
         stage.setScene(scene);
@@ -55,7 +57,7 @@ public class Game extends Application {
     }
 
     private Shooter createShooter(Pane gamePane,Ball[] balls) {
-        Shooter shooter = new Shooter(250,590,10,185);
+        Shooter shooter = new Shooter(245,590,10,185);
         shooter.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
