@@ -11,7 +11,7 @@ public class DataClass {
     private static User currentUser;
 
     static {
-        users = DataLoader.loadUsers();
+        users = Loader.loadUsers();
         if (users == null){
             users = new ArrayList<>();
         }

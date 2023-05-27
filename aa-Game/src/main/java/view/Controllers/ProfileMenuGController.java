@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import model.User;
 import utility.DataClass;
-import utility.DataLoader;
+import utility.Loader;
 import utility.RandomGenerator;
 import utility.Regexes;
 import view.LoginMenu;
@@ -240,7 +240,7 @@ public class ProfileMenuGController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             DataClass.getUsers().remove(currentUser);
-            DataLoader.saveUsers();
+            Loader.saveUsers();
             currentUser = null;
             DataClass.setCurrentUser(null);
             new LoginMenu().start(DataClass.getStage());

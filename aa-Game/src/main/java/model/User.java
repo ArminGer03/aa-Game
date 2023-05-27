@@ -1,11 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.scene.paint.Color;
-import utility.DataClass;
-import utility.DataLoader;
-import utility.RandomGenerator;
-import utility.SHA;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import utility.*;
 
 
 public class User {
@@ -16,10 +13,9 @@ public class User {
     private int imageNumber;
     private String gameMode;
     private String soundMode;
-    private Color colorForCircle;
-    private String color;
+    private String colorHex;
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email) throws JsonProcessingException {
         this.username = username;
         setPassword(password);
         this.email = email;
@@ -28,13 +24,13 @@ public class User {
         this.imagePath = RandomGenerator.randomImagePath(this.imageNumber);
         this.gameMode = "Easy";
         this.soundMode = "UnMute";
-        this.colorForCircle = Color.BLACK;
-        DataLoader.saveUsers();
+        setColorHex(Color.BEIGE);
+        Loader.saveUsers();
     }
 
     public void setPassword(String password) {
         this.password = SHA.shaString(password);
-        DataLoader.saveUsers();
+        Loader.saveUsers();
     }
     public boolean checkPassword(String passwordToCheck) {
         return SHA.shaString(passwordToCheck).equals(password);
@@ -51,7 +47,7 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-        DataLoader.saveUsers();
+        Loader.saveUsers();
     }
 
     public String getImagePath() {
@@ -65,7 +61,7 @@ public class User {
     public void setImage(String imagePath,int imageNumber) {
         this.imagePath = imagePath;
         this.imageNumber = imageNumber;
-        DataLoader.saveUsers();
+        Loader.saveUsers();
     }
 
     public String getGameMode() {
@@ -84,13 +80,16 @@ public class User {
         this.soundMode = soundMode;
     }
 
-    public Color getColorForCircle() {
-        return colorForCircle;
+    public Color getColor() {
+        return ColorConverter.hexToColor(colorHex);
     }
 
-    public void setColorForCircle(Color colorForCircle) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        this.colorForCircle = colorForCircle;
-        this.color = objectMapper.writeValueAsString(color);
+    public void setColorHex(Color color) {
+        this.colorHex = ColorConverter.colorToHex(color);
+    }
+
+    //todo delete this shit
+    public static void main(String[] args) throws JsonProcessingException {
+        new User("Armin","test","test");
     }
 }

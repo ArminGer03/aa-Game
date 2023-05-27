@@ -5,8 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import utility.DataClass;
 
 public class SettingMenuGController {
@@ -17,7 +15,7 @@ public class SettingMenuGController {
     @FXML
     private ChoiceBox<String> langChoice;
     @FXML
-    private ColorPicker colorPicker;
+    private ColorPicker colorChoice;
 
 
     ObservableList<String> modeChoicesList = FXCollections.observableArrayList("Easy", "Medium","Hard");
@@ -33,7 +31,7 @@ public class SettingMenuGController {
          modeChoice.setValue(DataClass.getCurrentUser().getGameMode());
          songChoice.setValue(DataClass.getCurrentUser().getSoundMode());
          langChoice.setValue("English");
-         colorPicker.setValue(Color.BLACK);
+         colorChoice.setValue(DataClass.getCurrentUser().getColor());
     }
 
 

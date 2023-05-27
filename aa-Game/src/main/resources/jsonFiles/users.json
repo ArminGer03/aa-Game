@@ -1,11 +1,12 @@
 [
   {
-    "username": "Armin1",
-    "password": "f518c3e0cfc1046abc7c500d469c9f3420d4c2aab2d1880fad2b03264a1f51ba",
-    "email": "a.a@a.com",
-    "imagePath": "/images/pic3.jpeg",
-    "imageNumber": 2,
+    "username": "Armin",
+    "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+    "email": "test",
+    "imagePath": "/images/pic4.jpeg",
+    "imageNumber": 3,
     "gameMode": "Easy",
-    "soundMode": "UnMute"
+    "soundMode": "UnMute",
+    "colorHex": "#f5f5dc"
   }
 ]

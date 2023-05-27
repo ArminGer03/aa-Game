@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataLoader {
+public class Loader {
     public static final String USERS_DATABASE_PATH = "src/main/resources/jsonFiles/users.json";
     public static ArrayList<User> loadUsers() {
         try {
@@ -41,6 +41,4 @@ public class DataLoader {
             throw new RuntimeException(e);
         }
     }
-
-
 }

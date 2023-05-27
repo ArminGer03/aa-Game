@@ -11,10 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import utility.DataClass;
-import utility.DataLoader;
-import view.LoginMenu;
 import view.MainMenu;
-import view.SignUpMenu;
 
 import java.io.IOException;
 import java.net.URL;
