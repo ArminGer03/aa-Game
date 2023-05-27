@@ -40,11 +40,16 @@ public class Ball extends Pane {
         this.shootAnimation = shootAnimation;
     }
 
+
     public double getAngleWithCenter() {
         return angleWithCenter;
     }
 
     public void setAngleWithCenter(double angleWithCenter) {
         this.angleWithCenter = angleWithCenter;
+    }
+
+    public Text getNumberText() {
+        return numberText;
     }
 }

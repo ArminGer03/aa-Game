@@ -14,6 +14,7 @@ import model.Ball;
 import model.MainCircle;
 import model.Shooter;
 import utility.DataClass;
+import utility.RandomGenerator;
 import view.Animations.RotateAnimation;
 
 import java.net.URL;
@@ -22,7 +23,7 @@ import java.net.URL;
 public class Game extends Application {
 
     public static GameController gameController;
-    public static int BALLS_COUNT = 10;
+    public static int BALLS_COUNT = DataClass.getCurrentUser().getBalls();
     public static int shotBalls = 0;
 
     private static RotateAnimation rotateAnimation;
@@ -32,29 +33,34 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
+        //make scene
         URL url = LoginMenu.class.getResource("/fxml/gamePane.fxml");
         Pane gamePane = FXMLLoader.load(url);
         Scene scene = new Scene(gamePane,500,800);
+        //main circle initializing
         Color mainCircleColor = DataClass.getCurrentUser().getColor();
         MainCircle mainCircle = new MainCircle(250 , 350, mainCircleColor);
+        //gameController
         gameController = new GameController(mainCircle.getCircleBorder());
         gameController.setMainCircle(mainCircle);
+
+
+        //create objects
         Ball[] balls = createBalls(BALLS_COUNT);
         Shooter shooter = createShooter(gamePane,balls);
         Bounds bounds = shooter.getBoundsInParent();
         setBallsPositionInShooter(bounds,balls);
 
+
+        //add objects to gamePane
         gamePane.getChildren().add(shooter);
         gamePane.getChildren().addAll(balls);
         gamePane.getChildren().add(mainCircle);
+        randomInitialBalls(gamePane);
 
         setGamePane(gamePane);
 
-        RotateAnimation rotateAnimation = new RotateAnimation(GameController.getRotatingBalls(),
-                GameController.getBorderCircle(), 1,0.01,true);
 
-        setRotateAnimation(rotateAnimation);
 
         gamePane.getChildren().get(0).requestFocus();
         stage.setScene(scene);
@@ -110,6 +116,22 @@ public class Game extends Application {
             else{
                 balls[i].getCircle().setCenterY(bounds.getMinY() + (i - shotBalls) * bounds.getHeight() / 5);
             }
+        }
+    }
+
+    public static void randomInitialBalls(Pane gamePane){
+        RotateAnimation rotateAnimation = new RotateAnimation(GameController.getRotatingBalls(),
+                GameController.getBorderCircle(), 1,0.01,true);
+
+        for (int i = 0; i<6; i++){
+            double angle = RandomGenerator.randomAngle();
+            Ball ball = new Ball(0,0,10,0);
+            ball.getNumberText().setVisible(false);
+            gamePane.getChildren().add(ball);
+            ball.setAngleWithCenter(angle);
+            gameController.getRotatingBalls().add(ball);
+            setRotateAnimation(rotateAnimation);
+            rotateAnimation.play();
         }
     }
 

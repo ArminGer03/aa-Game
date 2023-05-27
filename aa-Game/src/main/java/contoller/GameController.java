@@ -6,12 +6,12 @@ import javafx.scene.shape.Line;
 import model.Ball;
 import model.MainCircle;
 import model.Shooter;
+import utility.DataClass;
 import view.Animations.RotateAnimation;
 import view.Animations.ShootAnimation;
 import view.Game;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static java.lang.Math.*;
 
@@ -41,7 +41,7 @@ public class GameController {
     }
 
     public void ballShooting(Pane gamePane , Ball[] balls) {
-        if(Game.shotBalls < 10){
+        if(Game.shotBalls < DataClass.getCurrentUser().getBalls()){
             ShootAnimation shootAnimation =
                     new ShootAnimation(balls[Game.shotBalls],gamePane);
             balls[Game.shotBalls].setBallAnimation(shootAnimation);
