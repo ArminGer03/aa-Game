@@ -53,8 +53,7 @@ public class Game extends Application {
         gameController = new GameController(mainCircle.getCircleBorder());
         gameController.setMainCircle(mainCircle);
 
-        //timer
-
+        //todo add soundtrack
 
         //create objects
         Ball[] balls = createBalls(BALLS_COUNT);
@@ -62,8 +61,10 @@ public class Game extends Application {
         Bounds bounds = shooter.getBoundsInParent();
         setBallsPositionInShooter(bounds,balls);
 
-        //todo phase bar
+        //todo phase bar with color index
         //todo ice bar
+        //todo show score
+        //todo show wind degree
 
 
         //add objects to gamePane

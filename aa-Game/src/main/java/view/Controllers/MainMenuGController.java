@@ -44,6 +44,7 @@ public class MainMenuGController {
     }
 
     public void scoreBoard(MouseEvent mouseEvent) {
+        //todo scoreboard
     }
 
     public void exit(MouseEvent mouseEvent) {
@@ -64,8 +65,10 @@ public class MainMenuGController {
     }
 
     public void resumeGame(MouseEvent mouseEvent) {
+        //todo save game
     }
 
     public void start1v1Game(MouseEvent mouseEvent) {
+        //todo 1v1
     }
 }
