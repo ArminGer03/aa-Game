@@ -7,7 +7,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import utility.DataClass;
 
 public class MainCircle extends Pane {
     private Circle circle;
@@ -15,8 +14,9 @@ public class MainCircle extends Pane {
     private Text numberText;
 
     //todo add color
-    public MainCircle(double centerX, double centerY ) {
+    public MainCircle(double centerX, double centerY , Color color) {
         circle = new Circle(centerX, centerY, 100);
+        circle.setFill(color);
         circleBorder = new Circle(centerX, centerY, 185);
         circleBorder.setFill(Color.TRANSPARENT);
         numberText = new Text(Integer.toString(0));

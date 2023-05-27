@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import utility.DataClass;
+import view.Game;
 import view.MainMenu;
 
 import java.io.IOException;
@@ -58,7 +59,8 @@ public class MainMenuGController {
         }
     }
 
-    public void startGame(MouseEvent mouseEvent) {
+    public void startGame(MouseEvent mouseEvent) throws Exception {
+        new Game().start(DataClass.getStage());
     }
 
     public void resumeGame(MouseEvent mouseEvent) {

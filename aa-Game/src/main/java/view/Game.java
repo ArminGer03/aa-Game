@@ -8,10 +8,12 @@ import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Ball;
 import model.MainCircle;
 import model.Shooter;
+import utility.DataClass;
 import view.Animations.RotateAnimation;
 
 import java.net.URL;
@@ -34,8 +36,8 @@ public class Game extends Application {
         URL url = LoginMenu.class.getResource("/fxml/gamePane.fxml");
         Pane gamePane = FXMLLoader.load(url);
         Scene scene = new Scene(gamePane,500,800);
-
-        MainCircle mainCircle = new MainCircle(250 , 350);
+        Color mainCircleColor = DataClass.getCurrentUser().getColor();
+        MainCircle mainCircle = new MainCircle(250 , 350, mainCircleColor);
         gameController = new GameController(mainCircle.getCircleBorder());
         gameController.setMainCircle(mainCircle);
         Ball[] balls = createBalls(BALLS_COUNT);
