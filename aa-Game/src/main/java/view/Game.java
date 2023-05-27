@@ -1,6 +1,8 @@
 package view;
 
 import contoller.GameController;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Ball;
 import model.MainCircle;
 import model.Shooter;
@@ -25,8 +32,10 @@ public class Game extends Application {
     public static GameController gameController;
     public static int BALLS_COUNT = DataClass.getCurrentUser().getBalls();
     public static int shotBalls = 0;
-
+    private static final int COUNTDOWN_TIME = 90; // in seconds
+    private int remainingTime = COUNTDOWN_TIME;
     private static RotateAnimation rotateAnimation;
+    private Timeline timeline = null;
 
     private static Pane gamePane;
 
@@ -44,6 +53,8 @@ public class Game extends Application {
         gameController = new GameController(mainCircle.getCircleBorder());
         gameController.setMainCircle(mainCircle);
 
+        //timer
+
 
         //create objects
         Ball[] balls = createBalls(BALLS_COUNT);
@@ -53,7 +64,6 @@ public class Game extends Application {
 
         //todo phase bar
         //todo ice bar
-        //todo timer
 
 
         //add objects to gamePane
@@ -61,6 +71,7 @@ public class Game extends Application {
         gamePane.getChildren().addAll(balls);
         gamePane.getChildren().add(mainCircle);
         randomInitialBalls(gamePane);
+        addTimer(gamePane);
 
         setGamePane(gamePane);
 
@@ -89,7 +100,7 @@ public class Game extends Application {
                 }
                 //todo add tab
                 //todo add esc for pause
-                
+
                 Bounds bounds = shooter.getBoundsInParent();
                 setBallsPositionInShooter(bounds,balls);
 
@@ -97,6 +108,38 @@ public class Game extends Application {
         });
 
         return shooter;
+    }
+
+    private void addTimer(Pane gamePane){
+        Text timerText = new Text(formatTime(remainingTime));
+        timerText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        timerText.setFill(Color.BLACK);
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            remainingTime--;
+            if (remainingTime >= 0) {
+                timerText.setText(formatTime(remainingTime));
+            }
+            else {
+                stopTimer();
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timerText.setLayoutX(20);
+        timerText.setLayoutY(20);
+        gamePane.getChildren().add(timerText);
+        timeline.play();
+    }
+
+    private void stopTimer() {
+        if (timeline != null) {
+            timeline.stop();
+        }
+    }
+
+    private String formatTime(int seconds) {
+        int minutes = seconds / 60;
+        int remainingSeconds = seconds % 60;
+        return String.format("%02d:%02d", minutes, remainingSeconds);
     }
 
     private Ball[] createBalls(int n){
