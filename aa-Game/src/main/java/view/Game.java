@@ -35,6 +35,7 @@ public class Game extends Application {
 
         MainCircle mainCircle = new MainCircle(250 , 350);
         gameController = new GameController(mainCircle.getCircleBorder());
+        gameController.setMainCircle(mainCircle);
         Ball[] balls = createBalls(BALLS_COUNT);
         Shooter shooter = createShooter(gamePane,balls);
         Bounds bounds = shooter.getBoundsInParent();
@@ -48,7 +49,7 @@ public class Game extends Application {
                 GameController.getBorderCircle(), 1,0.01,true);
 
         setRotateAnimation(rotateAnimation);
-        
+
         gamePane.getChildren().get(0).requestFocus();
         stage.setScene(scene);
         stage.show();

@@ -3,6 +3,7 @@ package contoller;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import model.Ball;
+import model.MainCircle;
 import model.Shooter;
 import view.Animations.RotateAnimation;
 import view.Animations.ShootAnimation;
@@ -17,6 +18,7 @@ public class GameController {
     private String username;
     private static Circle borderCircle;
     private static ArrayList<Ball> rotatingBalls;
+    private static MainCircle mainCircle;
 
     static {
         //todo add loader
@@ -62,9 +64,10 @@ public class GameController {
                 angle = PI;
             }
             ball.setAngleWithCenter(angle);
-
-
             rotatingBalls.add(ball);
+
+            mainCircle.getNumberText().setText(Integer.toString(Game.shotBalls));
+
             RotateAnimation rotateAnimation = Game.getRotateAnimation();
 
             rotateAnimation.play();
@@ -80,5 +83,9 @@ public class GameController {
 
     public static Circle getBorderCircle() {
         return borderCircle;
+    }
+
+    public void setMainCircle(MainCircle mainCircle) {
+        this.mainCircle = mainCircle;
     }
 }

@@ -4,6 +4,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import utility.DataClass;
 
 public class MainCircle extends Pane {
     private Circle circle;
@@ -20,9 +21,14 @@ public class MainCircle extends Pane {
         numberText.setX(centerX - numberText.getLayoutBounds().getWidth() / 2);
         numberText.setY(centerY + numberText.getLayoutBounds().getHeight() / 4);
         getChildren().addAll(circle, numberText , circleBorder);
+
     }
 
     public Circle getCircleBorder() {
         return circleBorder;
+    }
+
+    public Text getNumberText() {
+        return numberText;
     }
 }
