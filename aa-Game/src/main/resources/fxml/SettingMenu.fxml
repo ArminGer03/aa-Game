@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controllers.SettingMenuGController">
+   <children>
+      <ChoiceBox fx:id="modeChoice" layoutX="225.0" layoutY="63.0" prefWidth="150.0" />
+      <ColorPicker fx:id="colorChoice" layoutX="232.0" layoutY="134.0" />
+      <ChoiceBox fx:id="songChoice" layoutX="225.0" layoutY="187.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="langChoice" layoutX="225.0" layoutY="244.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

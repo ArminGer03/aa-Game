@@ -31,6 +31,7 @@ public class ShootAnimation extends Transition {
 
         //todo x axis check
         if (y <= 20) {
+            //todo end game
             pane.getChildren().remove(ball);
             this.stop();
         }

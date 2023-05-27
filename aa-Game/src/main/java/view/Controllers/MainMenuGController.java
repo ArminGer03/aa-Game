@@ -39,7 +39,10 @@ public class MainMenuGController {
         borderPane.setCenter(root);
     }
 
-    public void settingsMenu(MouseEvent mouseEvent) {
+    public void settingsMenu(MouseEvent mouseEvent) throws IOException {
+        URL url = MainMenu.class.getResource("/fxml/SettingMenu.fxml");
+        Parent root = FXMLLoader.load(url);
+        borderPane.setCenter(root);
     }
 
     public void scoreBoard(MouseEvent mouseEvent) {

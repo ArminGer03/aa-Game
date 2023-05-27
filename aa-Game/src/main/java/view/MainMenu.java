@@ -13,7 +13,6 @@ import java.net.URL;
 public class MainMenu extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        stage.initStyle(StageStyle.UNDECORATED);
         DataClass.setStage(stage);
         URL url = LoginMenu.class.getResource("/fxml/MainMenu.fxml");
         BorderPane borderPane = FXMLLoader.load(url);

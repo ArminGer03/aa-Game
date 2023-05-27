@@ -1,9 +1,11 @@
 [
   {
-    "username": "Patrick",
-    "password": "30abb7b41e9a5f5f693d67dd5f11c6c56cd88bf58fbfa4529351a50edc405855",
+    "username": "Armin1",
+    "password": "f518c3e0cfc1046abc7c500d469c9f3420d4c2aab2d1880fad2b03264a1f51ba",
     "email": "a.a@a.com",
-    "imagePath": "/images/pic1.jpeg",
-    "imageNumber": 0
+    "imagePath": "/images/pic3.jpeg",
+    "imageNumber": 2,
+    "gameMode": "Easy",
+    "soundMode": "UnMute"
   }
 ]
