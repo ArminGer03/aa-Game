@@ -98,6 +98,7 @@ public class GameController {
             Line line = new Line(ball.getCircle().getCenterX(), ball.getCircle().getCenterY(),
                     mainCircle.getCircleBorder().getCenterX(), mainCircle.getCircleBorder().getCenterY());
             Game.getGamePane().getChildren().add(line);
+            line.toBack();
         }
 
     }
