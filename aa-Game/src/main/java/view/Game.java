@@ -25,6 +25,8 @@ public class Game extends Application {
 
     private static RotateAnimation rotateAnimation;
 
+    private static Pane gamePane;
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -44,6 +46,8 @@ public class Game extends Application {
         gamePane.getChildren().add(shooter);
         gamePane.getChildren().addAll(balls);
         gamePane.getChildren().add(mainCircle);
+
+        setGamePane(gamePane);
 
         RotateAnimation rotateAnimation = new RotateAnimation(GameController.getRotatingBalls(),
                 GameController.getBorderCircle(), 1,0.01,true);
@@ -113,6 +117,14 @@ public class Game extends Application {
 
     public static void setRotateAnimation(RotateAnimation rotateAnimation) {
         Game.rotateAnimation = rotateAnimation;
+    }
+
+    public static Pane getGamePane() {
+        return gamePane;
+    }
+
+    public void setGamePane(Pane gamePane) {
+        this.gamePane = gamePane;
     }
 
     public static void main(String[] args) {

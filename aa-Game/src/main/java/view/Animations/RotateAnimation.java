@@ -40,6 +40,8 @@ public class RotateAnimation extends Transition {
             double y = borderCircle.getCenterY() - borderCircle.getRadius() * Math.cos(angle);
             ball.getCircle().setCenterX(x);
             ball.getCircle().setCenterY(y);
+
+            GameController.drawLine(rotatingBalls);
         }
 
     }

@@ -2,6 +2,7 @@ package contoller;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import model.Ball;
 import model.MainCircle;
 import model.Shooter;
@@ -10,6 +11,7 @@ import view.Animations.ShootAnimation;
 import view.Game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.*;
 
@@ -88,4 +90,16 @@ public class GameController {
     public void setMainCircle(MainCircle mainCircle) {
         this.mainCircle = mainCircle;
     }
+
+    public static void drawLine(ArrayList<Ball> rotatingBalls){
+        Game.getGamePane().getChildren().removeIf(node -> node instanceof Line);
+
+        for ( Ball ball : rotatingBalls){
+            Line line = new Line(ball.getCircle().getCenterX(), ball.getCircle().getCenterY(),
+                    mainCircle.getCircleBorder().getCenterX(), mainCircle.getCircleBorder().getCenterY());
+            Game.getGamePane().getChildren().add(line);
+        }
+
+    }
+
 }
