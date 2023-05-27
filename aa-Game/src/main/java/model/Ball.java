@@ -4,16 +4,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import view.Animations.BallAnimation;
-
-import java.awt.*;
+import view.Animations.ShootAnimation;
 
 public class Ball extends Pane {
     private Circle circle;
     private Text numberText;
-    private BallAnimation ballAnimation;
+    private ShootAnimation shootAnimation;
     private int number;
+    private double angleWithCenter; //angle is calculated from y axis counter clockwise
 
 
     public Ball(double centerX, double centerY, double radius, int number) {
@@ -38,8 +36,15 @@ public class Ball extends Pane {
         return circle;
     }
 
-    public void setBallAnimation(BallAnimation ballAnimation) {
-        this.ballAnimation = ballAnimation;
+    public void setBallAnimation(ShootAnimation shootAnimation) {
+        this.shootAnimation = shootAnimation;
     }
 
+    public double getAngleWithCenter() {
+        return angleWithCenter;
+    }
+
+    public void setAngleWithCenter(double angleWithCenter) {
+        this.angleWithCenter = angleWithCenter;
+    }
 }

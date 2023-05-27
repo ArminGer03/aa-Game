@@ -6,22 +6,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Ball;
 import model.MainCircle;
 import model.Shooter;
-import view.Animations.BallAnimation;
+import view.Animations.RotateAnimation;
 
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
 
 
 public class Game extends Application {
@@ -29,6 +22,8 @@ public class Game extends Application {
     public static GameController gameController;
     public static int BALLS_COUNT = 10;
     public static int shotBalls = 0;
+
+    private static RotateAnimation rotateAnimation;
 
 
     @Override
@@ -45,12 +40,15 @@ public class Game extends Application {
         Bounds bounds = shooter.getBoundsInParent();
         setBallsPositionInShooter(bounds,balls);
 
-
-
         gamePane.getChildren().add(shooter);
         gamePane.getChildren().addAll(balls);
         gamePane.getChildren().add(mainCircle);
 
+        RotateAnimation rotateAnimation = new RotateAnimation(GameController.getRotatingBalls(),
+                GameController.getBorderCircle(), 1,0.01,true);
+
+        setRotateAnimation(rotateAnimation);
+        
         gamePane.getChildren().get(0).requestFocus();
         stage.setScene(scene);
         stage.show();
@@ -108,6 +106,13 @@ public class Game extends Application {
         }
     }
 
+    public static RotateAnimation getRotateAnimation() {
+        return rotateAnimation;
+    }
+
+    public static void setRotateAnimation(RotateAnimation rotateAnimation) {
+        Game.rotateAnimation = rotateAnimation;
+    }
 
     public static void main(String[] args) {
         launch(args);
