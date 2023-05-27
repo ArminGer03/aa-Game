@@ -2,9 +2,11 @@ package view.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.input.MouseEvent;
 import utility.DataClass;
 
 public class SettingMenuGController {
@@ -35,4 +37,27 @@ public class SettingMenuGController {
     }
 
 
+    public void changeDifficulty(MouseEvent mouseEvent) {
+        modeChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setGameMode(modeChoice.getValue());
+        });
+    }
+
+    public void changeSound(MouseEvent mouseEvent) {
+        songChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setSoundMode(songChoice.getValue());
+        });
+    }
+
+    public void changeLanguage(MouseEvent mouseEvent) {
+        langChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setLanguage(langChoice.getValue());
+        });
+    }
+
+    public void changeColor(ActionEvent actionEvent) {
+        colorChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setColorHex(colorChoice.getValue());
+        });
+    }
 }

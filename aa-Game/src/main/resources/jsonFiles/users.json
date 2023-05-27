@@ -1,12 +1,13 @@
 [
   {
-    "username": "Armin",
-    "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-    "email": "test",
+    "username": "a",
+    "password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+    "email": "a",
     "imagePath": "/images/pic4.jpeg",
     "imageNumber": 3,
-    "gameMode": "Easy",
-    "soundMode": "UnMute",
-    "colorHex": "#f5f5dc"
+    "gameMode": "Medium",
+    "soundMode": "Mute",
+    "colorHex": "#000080",
+    "language": "Persian"
   }
 ]

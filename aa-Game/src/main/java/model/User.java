@@ -14,6 +14,7 @@ public class User {
     private String gameMode;
     private String soundMode;
     private String colorHex;
+    private String language;
 
     public User(String username, String password, String email) throws JsonProcessingException {
         this.username = username;
@@ -24,6 +25,7 @@ public class User {
         this.imagePath = RandomGenerator.randomImagePath(this.imageNumber);
         this.gameMode = "Easy";
         this.soundMode = "UnMute";
+        this.language = "English";
         setColorHex(Color.BEIGE);
         Loader.saveUsers();
     }
@@ -70,6 +72,7 @@ public class User {
 
     public void setGameMode(String gameMode) {
         this.gameMode = gameMode;
+        Loader.saveUsers();
     }
 
     public String getSoundMode() {
@@ -78,6 +81,7 @@ public class User {
 
     public void setSoundMode(String soundMode) {
         this.soundMode = soundMode;
+        Loader.saveUsers();
     }
 
     public Color getColor() {
@@ -86,10 +90,20 @@ public class User {
 
     public void setColorHex(Color color) {
         this.colorHex = ColorConverter.colorToHex(color);
+        Loader.saveUsers();
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+        Loader.saveUsers();
     }
 
     //todo delete this shit
     public static void main(String[] args) throws JsonProcessingException {
-        new User("Armin","test","test");
+        new User("a","a","a");
     }
 }

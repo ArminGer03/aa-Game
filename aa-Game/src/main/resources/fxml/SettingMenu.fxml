@@ -2,14 +2,35 @@
 
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controllers.SettingMenuGController">
    <children>
-      <ChoiceBox fx:id="modeChoice" layoutX="225.0" layoutY="63.0" prefWidth="150.0" />
-      <ColorPicker fx:id="colorChoice" layoutX="232.0" layoutY="134.0" />
-      <ChoiceBox fx:id="songChoice" layoutX="225.0" layoutY="187.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="langChoice" layoutX="225.0" layoutY="244.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="modeChoice" layoutX="188.0" layoutY="68.0" onMouseClicked="#changeDifficulty" prefWidth="150.0" />
+      <ColorPicker fx:id="colorChoice" layoutX="195.0" layoutY="129.0" onAction="#changeColor" />
+      <ChoiceBox fx:id="songChoice" layoutX="188.0" layoutY="187.0" onMouseClicked="#changeSound" prefWidth="150.0" />
+      <ChoiceBox fx:id="langChoice" layoutX="188.0" layoutY="247.0" onMouseClicked="#changeLanguage" prefWidth="150.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="43.0" prefHeight="18.0" prefWidth="115.0" text="Difficulty:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="105.0" prefHeight="18.0" prefWidth="115.0" text="MainCircle Color:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="163.0" prefHeight="18.0" prefWidth="115.0" text="Sound:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="223.0" prefHeight="18.0" prefWidth="115.0" text="Language:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
