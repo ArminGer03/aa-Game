@@ -15,6 +15,7 @@ public class User {
     private String soundMode;
     private String colorHex;
     private String language;
+    private int balls;
 
     public User(String username, String password, String email) throws JsonProcessingException {
         this.username = username;
@@ -27,6 +28,7 @@ public class User {
         this.soundMode = "UnMute";
         this.language = "English";
         setColorHex(Color.BEIGE);
+        this.balls = 10;
         Loader.saveUsers();
     }
 
@@ -99,6 +101,15 @@ public class User {
 
     public void setLanguage(String language) {
         this.language = language;
+        Loader.saveUsers();
+    }
+
+    public int getBalls() {
+        return balls;
+    }
+
+    public void setBalls(int balls) {
+        this.balls = balls;
         Loader.saveUsers();
     }
 

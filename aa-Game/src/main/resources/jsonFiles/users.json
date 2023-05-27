@@ -8,6 +8,7 @@
     "gameMode": "Medium",
     "soundMode": "Mute",
     "colorHex": "#000080",
-    "language": "Persian"
+    "language": "Persian",
+    "balls": 10
   }
 ]
