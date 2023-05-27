@@ -51,6 +51,10 @@ public class Game extends Application {
         Bounds bounds = shooter.getBoundsInParent();
         setBallsPositionInShooter(bounds,balls);
 
+        //todo phase bar
+        //todo ice bar
+        //todo timer
+
 
         //add objects to gamePane
         gamePane.getChildren().add(shooter);
@@ -59,7 +63,6 @@ public class Game extends Application {
         randomInitialBalls(gamePane);
 
         setGamePane(gamePane);
-
 
 
         gamePane.getChildren().get(0).requestFocus();
@@ -74,6 +77,7 @@ public class Game extends Application {
             public void handle(KeyEvent keyEvent) {
                 String keyName = keyEvent.getCode().getName();
 
+                //todo phase checker
                 if (keyName.equals("Left")){
                     Game.gameController.moveLeft(shooter);
                 }
@@ -83,7 +87,9 @@ public class Game extends Application {
                 else if (keyName.equals("Space")){
                     Game.gameController.ballShooting(gamePane , balls);
                 }
-
+                //todo add tab
+                //todo add esc for pause
+                
                 Bounds bounds = shooter.getBoundsInParent();
                 setBallsPositionInShooter(bounds,balls);
 

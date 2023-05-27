@@ -74,6 +74,9 @@ public class GameController {
 
             rotateAnimation.play();
 
+            //todo calculate phase
+            //todo calculate ice
+
             return true;
         }
         return false;
