@@ -1,5 +1,6 @@
 package contoller;
 
+import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -13,6 +14,9 @@ import view.Animations.ShootAnimation;
 import view.Game;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static java.lang.Math.*;
 
@@ -172,6 +176,7 @@ public class GameController {
         new Thread(() -> {
             RotateAnimation rotateAnimation = Game.getRotateAnimation();
             double slowerSpeed = rotateAnimation.getRotationSpeed() / 3;
+            
             while (iceProgress > 0) {
                 try {
                     Thread.sleep(1000);
@@ -201,21 +206,22 @@ public class GameController {
     }
 
     public void changeDirectionPhase2(){
-        new Thread(() -> {
-            RotateAnimation rotateAnimation = Game.getRotateAnimation();
-            while (true) {
-                try {
-                    Thread.sleep(4000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                rotateAnimation.setDirection(-1 * rotateAnimation.getDirection());
+        RotateAnimation rotateAnimation = Game.getRotateAnimation();
+        Timer timer = new Timer ();
+        timer.schedule ( new TimerTask() {
+            @Override
+            public void run() {
+
+                Platform.runLater ( ()->{
+                    rotateAnimation.setDirection(-1 * rotateAnimation.getDirection());
+                } );
+
             }
-        }).start();
+        }, 0, (long) (4000) );
+
     }
     public void changeBallSizePhase2(){
         new Thread(() -> {
-            RotateAnimation rotateAnimation = Game.getRotateAnimation();
             while (true) {
                 for (Ball ball : rotatingBalls) {
                     ball.getCircle().setRadius(11);
@@ -240,40 +246,40 @@ public class GameController {
     public void activatePhase3(){
         if (!phase3Activated){
             phase3Activated = true;
-            new Thread(() -> {
-                RotateAnimation rotateAnimation = Game.getRotateAnimation();
-                boolean visibility = false;
-                while (true) {
-                    for (Ball ball : rotatingBalls) {
-                        ball.setVisible(visibility);
-                        ball.setVisibility(visibility);
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    visibility = !visibility;
+            Timer timer = new Timer ();
+            AtomicBoolean visibility = new AtomicBoolean(false);
+            timer.schedule ( new TimerTask() {
+                @Override
+                public void run() {
+
+                    Platform.runLater ( ()->{
+                        for (Ball ball : rotatingBalls) {
+                            ball.setVisible(visibility.get());
+                            ball.setVisibility(visibility.get());
+                        }
+                        visibility.set(!visibility.get());
+                    } );
+
                 }
-            }).start();
+            }, 0, (long) (1000) );
+
         }
     }
 
     public void activatePhase4(){
         if (!phase4Activated){
             phase4Activated = true;
+            Timer timer = new Timer ();
+            timer.schedule ( new TimerTask() {
+                @Override
+                public void run() {
 
-            new Thread(() -> {
-                while (true) {
-                    setWindDegree(RandomGenerator.randomWindAngle());
-                    System.out.println(getWindDegree());
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    Platform.runLater ( ()->{
+                        setWindDegree(RandomGenerator.randomWindAngle());
+                    } );
+
                 }
-            }).start();
+            }, 0, (long) (5000) );
 
         }
     }
@@ -285,6 +291,6 @@ public class GameController {
 
     public static void setWindDegree(int windDegree) {
         GameController.WindDegree = windDegree;
-        //Game.updateWindTracker(windDegree);
+        Game.updateWindTracker(windDegree);
     }
 }
