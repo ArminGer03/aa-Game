@@ -46,4 +46,11 @@ public class RotateAnimation extends Transition {
 
     }
 
+    public double getRotationSpeed() {
+        return rotationSpeed;
+    }
+
+    public void setRotationSpeed(double rotationSpeed) {
+        this.rotationSpeed = rotationSpeed;
+    }
 }

@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -45,6 +46,7 @@ public class Game extends Application {
     private static Pane gamePane;
     private static Label phaseLabel;
     private MediaPlayer backGroundTrack;
+    private static ProgressBar iceProgressBar;
 
 
     @Override
@@ -60,7 +62,6 @@ public class Game extends Application {
         gameController = new GameController(mainCircle.getCircleBorder());
         gameController.setMainCircle(mainCircle);
 
-        //todo add soundtrack
 
         //create objects
         Ball[] balls = createBalls(BALLS_COUNT);
@@ -68,7 +69,6 @@ public class Game extends Application {
         Bounds bounds = shooter.getBoundsInParent();
         setBallsPositionInShooter(bounds,balls);
 
-        //todo ice bar
         //todo show score
         //todo show wind degree
 
@@ -81,6 +81,7 @@ public class Game extends Application {
         addTimer(gamePane);
         createPhaseTracker(gamePane);
         createSoundTrack();
+        createIceProgressBar(gamePane);
 
         setGamePane(gamePane);
 
@@ -96,7 +97,6 @@ public class Game extends Application {
             public void handle(KeyEvent keyEvent) {
                 String keyName = keyEvent.getCode().getName();
 
-                //todo phase checker
                 if (keyName.equals("Left") && GameController.getPhase() == 4){
                     Game.gameController.moveLeft(shooter);
                 }
@@ -106,7 +106,10 @@ public class Game extends Application {
                 else if (keyName.equals("Space")){
                     Game.gameController.ballShooting(gamePane , balls);
                 }
-                //todo add tab
+                else if (keyName.equals("Tab") && GameController.getIceProgress() == 1){
+                    Game.gameController.iceMode();
+                }
+
                 //todo add esc for pause
 
                 Bounds bounds = shooter.getBoundsInParent();
@@ -182,6 +185,20 @@ public class Game extends Application {
         }
     }
 
+    private static void createIceProgressBar(Pane gamePane){
+        Label nameLabel = new Label("Ice Progress:");
+        iceProgressBar = new ProgressBar(GameController.getIceProgress());
+        iceProgressBar.setStyle("-fx-accent: #b2ffff;");
+        iceProgressBar.setLayoutX(20);
+        iceProgressBar.setLayoutY(750);
+        nameLabel.setLayoutX(20);
+        nameLabel.setLayoutY(750);
+        gamePane.getChildren().addAll(iceProgressBar,nameLabel);
+    }
+
+    public static void updateIceProgressBar(double progress) {
+        iceProgressBar.setProgress(progress);
+    }
     public void createSoundTrack() throws URISyntaxException {
         URI uri = LoginMenu.class.getResource("/soundtracks/evolution.mp3").toURI();
         Media soundtrack = new Media(uri.toString());

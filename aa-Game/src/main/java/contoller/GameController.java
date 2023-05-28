@@ -23,10 +23,14 @@ public class GameController {
     private static MainCircle mainCircle;
 
     private static int phase;
+    private static double iceProgress;
+    private static boolean iceModeActivated;
 
     static {
         //todo add loader
         rotatingBalls = new ArrayList<>();
+        iceProgress = 0;
+        iceModeActivated = false;
     }
 
     public GameController(Circle borderCircle) {
@@ -79,7 +83,7 @@ public class GameController {
             //calculate phase
             phase = calculatePhase();
 
-            //todo calculate ice
+            iceProgress = calculateIceProgress();
 
             return true;
         }
@@ -128,8 +132,47 @@ public class GameController {
         Game.updatePhaseLabel(phase);
         return phase;
     }
+    public static double calculateIceProgress(){
+        double ice = getIceProgress();
+        if (!iceModeActivated){
+            ice += 0.15;
+            if(ice > 1){
+                ice = 1;
+            }
+            Game.updateIceProgressBar(ice);
+        }
+        return ice;
+    }
+
 
     public static int getPhase() {
         return phase;
+    }
+
+    public static double getIceProgress() {
+        return iceProgress;
+    }
+
+    public void iceMode() {
+        new Thread(() -> {
+            RotateAnimation rotateAnimation = Game.getRotateAnimation();
+            double slowerSpeed = rotateAnimation.getRotationSpeed() / 3;
+            while (iceProgress > 0) {
+                iceModeActivated = true;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                iceProgress -= 0.25;
+                rotateAnimation.setRotationSpeed(slowerSpeed);
+                if (iceProgress <= 0) {
+                    iceModeActivated = false;
+                    iceProgress = 0.0;
+                    rotateAnimation.setRotationSpeed(slowerSpeed * 3);
+                }
+                Game.updateIceProgressBar(iceProgress);
+            }
+        }).start();
     }
 }
