@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -25,6 +27,8 @@ import utility.DataClass;
 import utility.RandomGenerator;
 import view.Animations.RotateAnimation;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 
@@ -40,6 +44,7 @@ public class Game extends Application {
 
     private static Pane gamePane;
     private static Label phaseLabel;
+    private MediaPlayer backGroundTrack;
 
 
     @Override
@@ -75,6 +80,7 @@ public class Game extends Application {
         randomInitialBalls(gamePane);
         addTimer(gamePane);
         createPhaseTracker(gamePane);
+        createSoundTrack();
 
         setGamePane(gamePane);
 
@@ -91,10 +97,10 @@ public class Game extends Application {
                 String keyName = keyEvent.getCode().getName();
 
                 //todo phase checker
-                if (keyName.equals("Left")){
+                if (keyName.equals("Left") && GameController.getPhase() == 4){
                     Game.gameController.moveLeft(shooter);
                 }
-                else if (keyName.equals("Right")){
+                else if (keyName.equals("Right") && GameController.getPhase() == 4){
                     Game.gameController.moveRight(shooter);
                 }
                 else if (keyName.equals("Space")){
@@ -175,6 +181,16 @@ public class Game extends Application {
                 break;
         }
     }
+
+    public void createSoundTrack() throws URISyntaxException {
+        URI uri = LoginMenu.class.getResource("/soundtracks/evolution.mp3").toURI();
+        Media soundtrack = new Media(uri.toString());
+
+        backGroundTrack = new MediaPlayer(soundtrack);
+
+        backGroundTrack.play();
+    }
+
 
     private Ball[] createBalls(int n){
         Ball balls[] = new Ball[n];

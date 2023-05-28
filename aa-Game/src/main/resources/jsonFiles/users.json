@@ -3,12 +3,12 @@
     "username": "a",
     "password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
     "email": "a",
-    "imagePath": "/images/pic4.jpeg",
-    "imageNumber": 3,
+    "imagePath": "/images/pic3.jpeg",
+    "imageNumber": 2,
     "gameMode": "Medium",
     "soundMode": "Mute",
-    "colorHex": "#000080",
-    "language": "Persian",
+    "colorHex": "#ff6666",
+    "language": "English",
     "balls": 15
   }
 ]

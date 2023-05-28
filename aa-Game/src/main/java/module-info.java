@@ -5,6 +5,7 @@ module aa.Game {
     requires java.desktop;
     requires com.fasterxml.jackson.databind;
     requires javafx.graphics;
+    requires javafx.media;
 
     exports view;
     opens view to javafx.fxml;

@@ -16,6 +16,7 @@ public class User {
     private String colorHex;
     private String language;
     private int balls;
+    private String soundTrackPath;
 
     public User(String username, String password, String email) throws JsonProcessingException {
         this.username = username;
@@ -29,6 +30,7 @@ public class User {
         this.language = "English";
         setColorHex(Color.BEIGE);
         this.balls = 10;
+        soundTrackPath = "agha reza";
         Loader.saveUsers();
     }
 
@@ -111,6 +113,14 @@ public class User {
     public void setBalls(int balls) {
         this.balls = balls;
         Loader.saveUsers();
+    }
+
+    public String getSoundTrackPath() {
+        return soundTrackPath;
+    }
+
+    public void setSoundTrackPath(String soundTrackPath) {
+        this.soundTrackPath = soundTrackPath;
     }
 
     //todo delete this shit
