@@ -30,13 +30,17 @@ public class GameController {
     private static int phase;
     private static int  WindDegree;
     private static double iceProgress;
-    private static boolean iceModeActivated;
-    private static boolean phase2Activated;
-    private static boolean phase3Activated;
-    private static boolean phase4Activated;
+    public static boolean iceModeActivated;
+    public static boolean phase2Activated;
+    public static boolean phase3Activated;
+    public static boolean phase4Activated;
+
+    public static Timer timerIce;
+    public static Timer phase2Timer;
+    public static Timer phase3Timer;
+    public static Timer phase4Timer;
 
     static {
-        //todo add loader
         rotatingBalls = new ArrayList<>();
         iceProgress = 0;
         iceModeActivated = false;
@@ -64,9 +68,6 @@ public class GameController {
             ShootAnimation shootAnimation =
                     new ShootAnimation(balls[Game.shotBalls],gamePane);
             balls[Game.shotBalls].setBallAnimation(shootAnimation);
-            if (getPhase() == 4){
-                //todo set wind
-            }
             shootAnimation.play();
             Game.shotBalls++;
         }
@@ -101,7 +102,24 @@ public class GameController {
 
             iceProgress = calculateIceProgress();
 
+            if(ballsTouching()){
+               rotateAnimation.stop();
+               Game.finish();
+            }
+
             return true;
+        }
+        return false;
+    }
+
+    public static boolean ballsTouching(){
+        ArrayList<Ball> balls = getRotatingBalls();
+        for (int i = 0; i < balls.size(); i++) {
+            for (int j = i+1; j < balls.size(); j++) {
+                if (balls.get(i).intersects(balls.get(j))) {
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -176,13 +194,16 @@ public class GameController {
         RotateAnimation rotateAnimation = Game.getRotateAnimation();
         double slowerSpeed = rotateAnimation.getRotationSpeed() / 3;
         Timer timer = new Timer ();
+        timerIce = timer;
         timer.schedule ( new TimerTask() {
             @Override
             public void run() {
 
                 Platform.runLater ( ()->{
+                    if(Game.isFinished){
+                        timer.cancel();
+                    }
                     iceModeActivated = true;
-                    //todo get set with difficulty
                     iceProgress -= 0.25;
                     rotateAnimation.setRotationSpeed(slowerSpeed);
                     if (iceProgress <= 0) {
@@ -210,11 +231,15 @@ public class GameController {
     public void changeDirectionPhase2(){
         RotateAnimation rotateAnimation = Game.getRotateAnimation();
         Timer timer = new Timer ();
+        phase2Timer = timer;
         timer.schedule ( new TimerTask() {
             @Override
             public void run() {
 
                 Platform.runLater ( ()->{
+                    if(Game.isFinished){
+                        timer.cancel();
+                    }
                     rotateAnimation.setDirection(-1 * rotateAnimation.getDirection());
                 } );
 
@@ -249,18 +274,28 @@ public class GameController {
         if (!phase3Activated){
             phase3Activated = true;
             Timer timer = new Timer ();
+            phase3Timer = timer;
             AtomicBoolean visibility = new AtomicBoolean(false);
             timer.schedule ( new TimerTask() {
                 @Override
                 public void run() {
-
-                    Platform.runLater ( ()->{
+                    if(Game.isFinished){
+                        visibility.set(true);
                         for (Ball ball : rotatingBalls) {
                             ball.setVisible(visibility.get());
                             ball.setVisibility(visibility.get());
                         }
-                        visibility.set(!visibility.get());
-                    } );
+                        timer.cancel();
+                    }
+                    else {
+                        Platform.runLater ( ()->{
+                            for (Ball ball : rotatingBalls) {
+                                ball.setVisible(visibility.get());
+                                ball.setVisibility(visibility.get());
+                            }
+                            visibility.set(!visibility.get());
+                        } );
+                    }
 
                 }
             }, 0, (long) (1000) );
@@ -272,11 +307,15 @@ public class GameController {
         if (!phase4Activated){
             phase4Activated = true;
             Timer timer = new Timer ();
+            phase4Timer = timer;
             timer.schedule ( new TimerTask() {
                 @Override
                 public void run() {
 
                     Platform.runLater ( ()->{
+                        if(Game.isFinished){
+                            timer.cancel();
+                        }
                         setWindDegree(RandomGenerator.randomWindAngle());
                     } );
 

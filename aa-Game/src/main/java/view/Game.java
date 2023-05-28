@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -44,13 +46,14 @@ public class Game extends Application {
     private static final int COUNTDOWN_TIME = 90; // in seconds
     private int remainingTime = COUNTDOWN_TIME;
     private static RotateAnimation rotateAnimation;
-    private Timeline timeline = null;
+    private static Timeline timeline = null;
 
     private static Pane gamePane;
     private static Label phaseLabel;
     private static Label WindLabel;
-    private MediaPlayer backGroundTrack;
+    private static MediaPlayer backGroundTrack;
     private static ProgressBar iceProgressBar;
+    public static boolean isFinished = false;
 
 
     @Override
@@ -102,16 +105,16 @@ public class Game extends Application {
             public void handle(KeyEvent keyEvent) {
                 String keyName = keyEvent.getCode().getName();
 
-                if (keyName.equals("Left") && GameController.getPhase() == 4){
+                if (keyName.equals("Left") && GameController.getPhase() == 4 && !isFinished){
                     Game.gameController.moveLeft(shooter);
                 }
-                else if (keyName.equals("Right") && GameController.getPhase() == 4){
+                else if (keyName.equals("Right") && GameController.getPhase() == 4 && !isFinished){
                     Game.gameController.moveRight(shooter);
                 }
-                else if (keyName.equals("Space")){
+                else if (keyName.equals("Space") && !isFinished){
                     Game.gameController.ballShooting(gamePane , balls);
                 }
-                else if (keyName.equals("Tab") && GameController.getIceProgress() == 1){
+                else if (keyName.equals("Tab") && GameController.getIceProgress() == 1 && !isFinished){
                     Game.gameController.iceMode();
                 }
 
@@ -290,6 +293,34 @@ public class Game extends Application {
         this.gamePane = gamePane;
     }
 
+    public static void finish(){
+        isFinished = true;
+        backGroundTrack.stop();
+        rotateAnimation.stop();
+        timeline.stop();
+        if (gameController.iceModeActivated){
+            gameController.timerIce.cancel();
+        }
+        if (gameController.phase2Activated){
+            gameController.phase2Timer.cancel();
+        }
+        if (gameController.phase3Activated){
+            gameController.phase3Timer.cancel();
+        }
+        if (gameController.phase4Activated){
+            gameController.phase4Timer.cancel();
+        }
+        if (shotBalls == BALLS_COUNT){
+            BackgroundFill backgroundFill = new BackgroundFill(Color.GREEN, null, null);
+            Background background = new Background(backgroundFill);
+            gamePane.setBackground(background);
+        }
+        else if (shotBalls < BALLS_COUNT){
+            BackgroundFill backgroundFill = new BackgroundFill(Color.RED, null, null);
+            Background background = new Background(backgroundFill);
+            gamePane.setBackground(background);
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }

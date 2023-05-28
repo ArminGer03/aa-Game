@@ -34,6 +34,13 @@ public class Ball extends Pane {
         });
     }
 
+    public boolean intersects(Ball other) {
+        double dx = this.getCircle().getCenterX() - other.getCircle().getCenterX();
+        double dy = this.getCircle().getCenterY() - other.getCircle().getCenterY();
+        double distance = Math.sqrt(dx*dx + dy*dy);
+        return distance < this.getCircle().getRadius() + other.getCircle().getRadius();
+    }
+
     public Circle getCircle() {
         return circle;
     }

@@ -123,9 +123,4 @@ public class User {
         this.soundTrackPath = soundTrackPath;
     }
 
-    //todo delete this shit
-    public static void main(String[] args) throws JsonProcessingException {
-        new User("a","a","a");
-        new User("Guest"," "," ");
-    }
 }

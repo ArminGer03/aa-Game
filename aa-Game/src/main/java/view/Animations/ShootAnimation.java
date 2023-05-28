@@ -5,6 +5,7 @@ import javafx.animation.Transition;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import model.Ball;
+import view.Game;
 
 
 public class ShootAnimation extends Transition {
@@ -33,19 +34,22 @@ public class ShootAnimation extends Transition {
         double y = ball.getCircle().getCenterY();
         double x = ball.getCircle().getCenterX();
 
-        //todo x axis check
+
         if (y <= 20) {
-            //todo end game
             pane.getChildren().remove(ball);
             this.stop();
+            Game.finish();
         }
         if (x < 0 || x > 500) {
-            //todo end game
             pane.getChildren().remove(ball);
             this.stop();
+            Game.finish();
         }
         else if(GameController.collideWithMainBorder(ball)){
             this.stop();
+            if (Game.shotBalls == Game.BALLS_COUNT){
+                Game.finish();
+            }
         }
         else{
             y = ball.getCircle().getCenterY() - speed * Math.cos(WindAngle);
