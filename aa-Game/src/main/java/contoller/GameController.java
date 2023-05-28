@@ -173,28 +173,30 @@ public class GameController {
     }
 
     public void iceMode() {
-        new Thread(() -> {
-            RotateAnimation rotateAnimation = Game.getRotateAnimation();
-            double slowerSpeed = rotateAnimation.getRotationSpeed() / 3;
-            
-            while (iceProgress > 0) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                iceModeActivated = true;
-                //todo get set with difficulty
-                iceProgress -= 0.25;
-                rotateAnimation.setRotationSpeed(slowerSpeed);
-                if (iceProgress <= 0) {
-                    iceModeActivated = false;
-                    iceProgress = 0.0;
-                    rotateAnimation.setRotationSpeed(slowerSpeed * 3);
-                }
-                Game.updateIceProgressBar(iceProgress);
+        RotateAnimation rotateAnimation = Game.getRotateAnimation();
+        double slowerSpeed = rotateAnimation.getRotationSpeed() / 3;
+        Timer timer = new Timer ();
+        timer.schedule ( new TimerTask() {
+            @Override
+            public void run() {
+
+                Platform.runLater ( ()->{
+                    iceModeActivated = true;
+                    //todo get set with difficulty
+                    iceProgress -= 0.25;
+                    rotateAnimation.setRotationSpeed(slowerSpeed);
+                    if (iceProgress <= 0) {
+                        iceModeActivated = false;
+                        iceProgress = 0.0;
+                        rotateAnimation.setRotationSpeed(slowerSpeed * 3);
+                        timer.cancel();
+                    }
+                    Game.updateIceProgressBar(iceProgress);
+                } );
+
             }
-        }).start();
+        }, 0, (long) (1000) );
+
     }
 
     public void activatePhase2(){
