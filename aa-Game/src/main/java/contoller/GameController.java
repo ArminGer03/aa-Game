@@ -7,6 +7,7 @@ import model.Ball;
 import model.MainCircle;
 import model.Shooter;
 import utility.DataClass;
+import utility.RandomGenerator;
 import view.Animations.RotateAnimation;
 import view.Animations.ShootAnimation;
 import view.Game;
@@ -23,10 +24,12 @@ public class GameController {
     private static MainCircle mainCircle;
 
     private static int phase;
+    private static int  WindDegree;
     private static double iceProgress;
     private static boolean iceModeActivated;
     private static boolean phase2Activated;
     private static boolean phase3Activated;
+    private static boolean phase4Activated;
 
     static {
         //todo add loader
@@ -35,11 +38,13 @@ public class GameController {
         iceModeActivated = false;
         phase2Activated = false;
         phase3Activated = false;
+        phase4Activated = false;
     }
 
     public GameController(Circle borderCircle) {
         this.borderCircle = borderCircle;
     }
+
     public void moveLeft(Shooter shooter) {
         if (shooter.getX() > 60)
             shooter.setX(shooter.getX() - 15);
@@ -55,6 +60,9 @@ public class GameController {
             ShootAnimation shootAnimation =
                     new ShootAnimation(balls[Game.shotBalls],gamePane);
             balls[Game.shotBalls].setBallAnimation(shootAnimation);
+            if (getPhase() == 4){
+                //todo set wind
+            }
             shootAnimation.play();
             Game.shotBalls++;
         }
@@ -249,5 +257,34 @@ public class GameController {
                 }
             }).start();
         }
+    }
+
+    public void activatePhase4(){
+        if (!phase4Activated){
+            phase4Activated = true;
+
+            new Thread(() -> {
+                while (true) {
+                    setWindDegree(RandomGenerator.randomWindAngle());
+                    System.out.println(getWindDegree());
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+        }
+    }
+
+
+    public static int getWindDegree() {
+        return WindDegree;
+    }
+
+    public static void setWindDegree(int windDegree) {
+        GameController.WindDegree = windDegree;
+        //Game.updateWindTracker(windDegree);
     }
 }

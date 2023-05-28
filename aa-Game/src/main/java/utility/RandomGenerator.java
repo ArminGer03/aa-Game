@@ -1,5 +1,7 @@
 package utility;
 
+import java.util.Random;
+
 import static java.lang.Math.PI;
 
 public class RandomGenerator {
@@ -23,5 +25,11 @@ public class RandomGenerator {
     public static double randomAngle () {
         int a = (int)(Math.random()*(20-0)+1);
         return a * PI / 10;
+    }
+
+    public static int randomWindAngle() {
+        Random rand = new Random();
+        int angle = rand.nextInt(31) - 15;
+        return angle;
     }
 }

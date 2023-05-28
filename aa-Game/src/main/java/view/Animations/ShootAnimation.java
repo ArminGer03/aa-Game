@@ -11,7 +11,8 @@ public class ShootAnimation extends Transition {
 
     private Ball ball;
     private Pane pane;
-
+    private double speed = 10;
+    private static double WindAngle = 0;
     public ShootAnimation(Ball ball, Pane pane){
 
         this.ball = ball;
@@ -23,6 +24,9 @@ public class ShootAnimation extends Transition {
     }
 
 
+    public static void setWindAngle(double windAngle) {
+        WindAngle = windAngle;
+    }
 
     @Override
     protected void interpolate(double v) {
@@ -35,15 +39,20 @@ public class ShootAnimation extends Transition {
             pane.getChildren().remove(ball);
             this.stop();
         }
+        if (x < 0 || x > 500) {
+            //todo end game
+            pane.getChildren().remove(ball);
+            this.stop();
+        }
         else if(GameController.collideWithMainBorder(ball)){
             this.stop();
         }
         else{
-            y = ball.getCircle().getCenterY() - 10;
+            y = ball.getCircle().getCenterY() - speed * Math.cos(WindAngle);
+            x = ball.getCircle().getCenterX() - speed * Math.sin(WindAngle);
             ball.getCircle().setCenterY(y);
             ball.getCircle().setCenterX(x);
         }
-
 
 
     }

@@ -45,6 +45,7 @@ public class Game extends Application {
 
     private static Pane gamePane;
     private static Label phaseLabel;
+    private static Label WindLabel;
     private MediaPlayer backGroundTrack;
     private static ProgressBar iceProgressBar;
 
@@ -82,6 +83,7 @@ public class Game extends Application {
         createPhaseTracker(gamePane);
         createSoundTrack();
         createIceProgressBar(gamePane);
+        createWindTracker(gamePane);
 
         setGamePane(gamePane);
 
@@ -153,9 +155,21 @@ public class Game extends Application {
         return String.format("%02d:%02d", minutes, remainingSeconds);
     }
 
+    private void createWindTracker(Pane gamePane){
+        WindLabel = new Label("Wind: " + gameController.getWindDegree());
+        WindLabel.setLayoutX(400);
+        WindLabel.setLayoutY(35);
+        gamePane.getChildren().add(WindLabel);
+    }
+
+
+    public static void updateWindTracker(int wind){
+        String windText = "Wind: " + wind;
+        WindLabel.setText(windText);
+    }
 
     private static void createPhaseTracker(Pane gamePane){
-        phaseLabel = new Label("Phase " + GameController.getPhase());
+        phaseLabel = new Label("Phase " + gameController.getPhase());
         updatePhaseLabel(GameController.getPhase());
         phaseLabel.setLayoutX(20);
         phaseLabel.setLayoutY(30);
@@ -172,11 +186,12 @@ public class Game extends Application {
                         "-fx-background-color: orange;");
                 break;
             case 3:
-                gameController.activatePhase3();
+                //gameController.activatePhase3();
                 phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
                         "-fx-background-color: yellow;");
                 break;
             case 4:
+                gameController.activatePhase4();
                 phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
                         "-fx-background-color: green;");
                 break;
@@ -274,4 +289,5 @@ public class Game extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
