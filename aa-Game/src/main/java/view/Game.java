@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -38,6 +39,7 @@ public class Game extends Application {
     private Timeline timeline = null;
 
     private static Pane gamePane;
+    private static Label phaseLabel;
 
 
     @Override
@@ -61,7 +63,6 @@ public class Game extends Application {
         Bounds bounds = shooter.getBoundsInParent();
         setBallsPositionInShooter(bounds,balls);
 
-        //todo phase bar with color index
         //todo ice bar
         //todo show score
         //todo show wind degree
@@ -73,9 +74,9 @@ public class Game extends Application {
         gamePane.getChildren().add(mainCircle);
         randomInitialBalls(gamePane);
         addTimer(gamePane);
+        createPhaseTracker(gamePane);
 
         setGamePane(gamePane);
-
 
         gamePane.getChildren().get(0).requestFocus();
         stage.setScene(scene);
@@ -141,6 +142,38 @@ public class Game extends Application {
         int minutes = seconds / 60;
         int remainingSeconds = seconds % 60;
         return String.format("%02d:%02d", minutes, remainingSeconds);
+    }
+
+
+    private static void createPhaseTracker(Pane gamePane){
+        phaseLabel = new Label("Phase " + GameController.getPhase());
+        updatePhaseLabel(GameController.getPhase());
+        phaseLabel.setLayoutX(20);
+        phaseLabel.setLayoutY(30);
+        gamePane.getChildren().add(phaseLabel);
+    }
+
+    public static void updatePhaseLabel(int phase) {
+        String phaseText = "Phase " + phase;
+        phaseLabel.setText(phaseText);
+        switch (phase) {
+            case 2:
+                phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
+                        "-fx-background-color: orange;");
+                break;
+            case 3:
+                phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
+                        "-fx-background-color: yellow;");
+                break;
+            case 4:
+                phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
+                        "-fx-background-color: green;");
+                break;
+            default:
+                phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
+                        "-fx-background-color: red;");
+                break;
+        }
     }
 
     private Ball[] createBalls(int n){

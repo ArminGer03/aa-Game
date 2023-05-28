@@ -22,6 +22,8 @@ public class GameController {
     private static ArrayList<Ball> rotatingBalls;
     private static MainCircle mainCircle;
 
+    private static int phase;
+
     static {
         //todo add loader
         rotatingBalls = new ArrayList<>();
@@ -74,7 +76,9 @@ public class GameController {
 
             rotateAnimation.play();
 
-            //todo calculate phase
+            //calculate phase
+            phase = calculatePhase();
+
             //todo calculate ice
 
             return true;
@@ -106,4 +110,26 @@ public class GameController {
 
     }
 
+    public static int calculatePhase(){
+        int phase = 1;
+        double percentShot = (double) Game.shotBalls / (double) Game.BALLS_COUNT;
+        if (percentShot >= 0 && percentShot < 0.25){
+            phase = 1;
+        }
+        if (percentShot >= 0.25 && percentShot < 0.5){
+            phase = 2;
+        }
+        else if (percentShot >= 0.5 && percentShot < 0.75){
+            phase = 3;
+        }
+        else if (percentShot >= 0.75 && percentShot < 1){
+            phase = 4;
+        }
+        Game.updatePhaseLabel(phase);
+        return phase;
+    }
+
+    public static int getPhase() {
+        return phase;
+    }
 }
