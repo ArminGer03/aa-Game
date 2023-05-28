@@ -27,10 +27,13 @@ import model.Shooter;
 import utility.DataClass;
 import utility.RandomGenerator;
 import view.Animations.RotateAnimation;
+import view.Animations.ShootAnimation;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import static java.lang.Math.PI;
 
 
 public class Game extends Application {
@@ -166,6 +169,7 @@ public class Game extends Application {
     public static void updateWindTracker(int wind){
         String windText = "Wind: " + wind;
         WindLabel.setText(windText);
+        ShootAnimation.setWindAngle(wind * PI / 180);
     }
 
     private static void createPhaseTracker(Pane gamePane){
