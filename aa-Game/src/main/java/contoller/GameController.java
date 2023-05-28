@@ -26,6 +26,7 @@ public class GameController {
     private static double iceProgress;
     private static boolean iceModeActivated;
     private static boolean phase2Activated;
+    private static boolean phase3Activated;
 
     static {
         //todo add loader
@@ -33,6 +34,7 @@ public class GameController {
         iceProgress = 0;
         iceModeActivated = false;
         phase2Activated = false;
+        phase3Activated = false;
     }
 
     public GameController(Circle borderCircle) {
@@ -108,10 +110,13 @@ public class GameController {
         Game.getGamePane().getChildren().removeIf(node -> node instanceof Line);
 
         for ( Ball ball : rotatingBalls){
-            Line line = new Line(ball.getCircle().getCenterX(), ball.getCircle().getCenterY(),
-                    mainCircle.getCircleBorder().getCenterX(), mainCircle.getCircleBorder().getCenterY());
-            Game.getGamePane().getChildren().add(line);
-            line.toBack();
+            if(ball.getVisibility()){
+                Line line = new Line(ball.getCircle().getCenterX(), ball.getCircle().getCenterY(),
+                        mainCircle.getCircleBorder().getCenterX(), mainCircle.getCircleBorder().getCenterY());
+                Game.getGamePane().getChildren().add(line);
+                line.toBack();
+            }
+
         }
 
     }
@@ -137,7 +142,7 @@ public class GameController {
     public static double calculateIceProgress(){
         double ice = getIceProgress();
         if (!iceModeActivated){
-            ice += 0.15;
+            ice += 0.2;
             if(ice > 1){
                 ice = 1;
             }
@@ -224,4 +229,25 @@ public class GameController {
         }).start();
     }
 
+    public void activatePhase3(){
+        if (!phase3Activated){
+            phase3Activated = true;
+            new Thread(() -> {
+                RotateAnimation rotateAnimation = Game.getRotateAnimation();
+                boolean visibility = false;
+                while (true) {
+                    for (Ball ball : rotatingBalls) {
+                        ball.setVisible(visibility);
+                        ball.setVisibility(visibility);
+                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    visibility = !visibility;
+                }
+            }).start();
+        }
+    }
 }

@@ -12,6 +12,7 @@ public class Ball extends Pane {
     private ShootAnimation shootAnimation;
     private int number;
     private double angleWithCenter; //angle is calculated from y axis counter clockwise
+    private boolean visibility ;
 
 
     public Ball(double centerX, double centerY, double radius, int number) {
@@ -19,6 +20,7 @@ public class Ball extends Pane {
         numberText = new Text(Integer.toString(number + 1));
         numberText.setFill(Color.WHITE);
         this.number = number;
+        visibility = true;
         numberText.setX(centerX - numberText.getLayoutBounds().getWidth() / 2);
         numberText.setY(centerY + numberText.getLayoutBounds().getHeight() / 4);
         getChildren().addAll(circle, numberText);
@@ -51,5 +53,13 @@ public class Ball extends Pane {
 
     public Text getNumberText() {
         return numberText;
+    }
+
+    public boolean getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 }

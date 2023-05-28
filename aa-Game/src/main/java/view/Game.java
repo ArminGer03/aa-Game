@@ -172,6 +172,7 @@ public class Game extends Application {
                         "-fx-background-color: orange;");
                 break;
             case 3:
+                gameController.activatePhase3();
                 phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
                         "-fx-background-color: yellow;");
                 break;
@@ -205,6 +206,8 @@ public class Game extends Application {
         Media soundtrack = new Media(uri.toString());
 
         backGroundTrack = new MediaPlayer(soundtrack);
+
+        backGroundTrack.setVolume(0.1);
 
         backGroundTrack.play();
     }
