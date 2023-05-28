@@ -28,7 +28,7 @@ public class User {
         this.gameMode = "Easy";
         this.soundMode = "UnMute";
         this.language = "English";
-        setColorHex(Color.BEIGE);
+        setColorHex(Color.BLACK);
         this.balls = 10;
         soundTrackPath = "agha reza";
         Loader.saveUsers();
@@ -126,5 +126,6 @@ public class User {
     //todo delete this shit
     public static void main(String[] args) throws JsonProcessingException {
         new User("a","a","a");
+        new User("Guest"," "," ");
     }
 }

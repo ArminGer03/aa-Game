@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import model.User;
 import utility.DataClass;
 import view.ForgotMenu;
+import view.Game;
 import view.MainMenu;
 import view.SignUpMenu;
 
@@ -89,8 +90,10 @@ public class LoginMenuGController {
         }
     }
 
-    public void quickGame(MouseEvent mouseEvent) {
-        //todo make a quick game
+    public void quickGame(MouseEvent mouseEvent) throws Exception {
+        User user = DataClass.getUserByUsername("Guest");
+        DataClass.setCurrentUser(user);
+        new Game().start(DataClass.getStage());
     }
 
     public void forgotPassword(MouseEvent mouseEvent) throws Exception {

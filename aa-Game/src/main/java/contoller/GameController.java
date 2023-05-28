@@ -133,7 +133,7 @@ public class GameController {
         else if (percentShot >= 0.5 && percentShot < 0.75){
             phase = 3;
         }
-        else if (percentShot >= 0.75 && percentShot < 1){
+        else if (percentShot >= 0.75 && percentShot <= 1){
             phase = 4;
         }
         Game.updatePhaseLabel(phase);
