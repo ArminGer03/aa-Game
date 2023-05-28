@@ -25,12 +25,14 @@ public class GameController {
     private static int phase;
     private static double iceProgress;
     private static boolean iceModeActivated;
+    private static boolean phase2Activated;
 
     static {
         //todo add loader
         rotatingBalls = new ArrayList<>();
         iceProgress = 0;
         iceModeActivated = false;
+        phase2Activated = false;
     }
 
     public GameController(Circle borderCircle) {
@@ -158,12 +160,13 @@ public class GameController {
             RotateAnimation rotateAnimation = Game.getRotateAnimation();
             double slowerSpeed = rotateAnimation.getRotationSpeed() / 3;
             while (iceProgress > 0) {
-                iceModeActivated = true;
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                iceModeActivated = true;
+                //todo get set with difficulty
                 iceProgress -= 0.25;
                 rotateAnimation.setRotationSpeed(slowerSpeed);
                 if (iceProgress <= 0) {
@@ -175,4 +178,50 @@ public class GameController {
             }
         }).start();
     }
+
+    public void activatePhase2(){
+        if (!phase2Activated){
+            phase2Activated = true;
+            changeDirectionPhase2();
+            changeBallSizePhase2();
+        }
+    }
+
+    public void changeDirectionPhase2(){
+        new Thread(() -> {
+            RotateAnimation rotateAnimation = Game.getRotateAnimation();
+            while (true) {
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                rotateAnimation.setDirection(-1 * rotateAnimation.getDirection());
+            }
+        }).start();
+    }
+    public void changeBallSizePhase2(){
+        new Thread(() -> {
+            RotateAnimation rotateAnimation = Game.getRotateAnimation();
+            while (true) {
+                for (Ball ball : rotatingBalls) {
+                    ball.getCircle().setRadius(11);
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                for (Ball ball : rotatingBalls) {
+                    ball.getCircle().setRadius(9);
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
 }

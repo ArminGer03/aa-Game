@@ -13,7 +13,7 @@ public class MainCircle extends Pane {
     private Circle circleBorder;
     private Text numberText;
 
-    //todo add color
+
     public MainCircle(double centerX, double centerY , Color color) {
         circle = new Circle(centerX, centerY, 100);
         circle.setFill(color);

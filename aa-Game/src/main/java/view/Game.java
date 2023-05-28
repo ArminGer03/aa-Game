@@ -167,6 +167,7 @@ public class Game extends Application {
         phaseLabel.setText(phaseText);
         switch (phase) {
             case 2:
+                gameController.activatePhase2();
                 phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
                         "-fx-background-color: orange;");
                 break;
