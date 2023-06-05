@@ -35,6 +35,7 @@ public class GameController {
     private static MainCircle mainCircle;
 
     private static int phase;
+    private static int score;
     private static int  WindDegree;
     private static double iceProgress;
     private static double iceModeDifficulty;
@@ -52,6 +53,7 @@ public class GameController {
     static {
         rotatingBalls = new ArrayList<>();
         iceProgress = 0;
+        score = 0;
         iceModeActivated = false;
         phase2Activated = false;
         phase3Activated = false;
@@ -114,15 +116,16 @@ public class GameController {
 
             rotateAnimation.play();
 
-            //calculate phase
-            phase = calculatePhase();
-
-            iceProgress = calculateIceProgress();
 
             if(ballsTouching()){
                rotateAnimation.stop();
                Game.lose();
             }
+
+            //calculate changes:
+            phase = calculatePhase();
+            score = calculateScore();
+            iceProgress = calculateIceProgress();
 
             return true;
         }
@@ -186,6 +189,26 @@ public class GameController {
         Game.updatePhaseLabel(phase);
         return phase;
     }
+
+    private static int calculateScore() {
+        int score = getScore();
+        double percentShot = (double) Game.shotBalls / (double) Game.BALLS_COUNT;
+        if (percentShot >= 0 && percentShot < 0.25){
+            score += 1;
+        }
+        if (percentShot >= 0.25 && percentShot < 0.5){
+            score += 2;
+        }
+        else if (percentShot >= 0.5 && percentShot < 0.75){
+            score += 3;
+        }
+        else if (percentShot >= 0.75 && percentShot <= 1){
+            score += 4;
+        }
+        //todo update score
+        return score;
+    }
+
     public static double calculateIceProgress(){
         double ice = getIceProgress();
         if (!iceModeActivated){
@@ -201,6 +224,10 @@ public class GameController {
 
     public static int getPhase() {
         return phase;
+    }
+
+    public static int getScore() {
+        return score;
     }
 
     public static double getIceProgress() {

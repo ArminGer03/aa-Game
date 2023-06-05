@@ -1,16 +1,16 @@
 [
   {
-    "username": "a",
-    "password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
-    "email": "a",
-    "imagePath": "/images/Barry.jpeg",
-    "imageNumber": -1,
-    "gameMode": "Easy",
-    "soundMode": "UnMute",
-    "colorHex": "#000000",
-    "language": "English",
-    "balls": 10,
-    "soundTrackPath": "agha reza"
+  "username": "a",
+  "password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+  "email": "a@a.a",
+  "imagePath": "/images/Barry.jpeg",
+  "imageNumber": -1,
+  "gameMode": "Medium",
+  "soundMode": "UnMute",
+  "colorHex": "#000000",
+  "language": "English",
+  "balls": 12,
+  "soundTrackPath": "agha reza"
   },
   {
     "username": "Guest",
@@ -18,19 +18,6 @@
     "email": " ",
     "imagePath": "/images/guest.jpeg",
     "imageNumber": 3,
-    "gameMode": "Medium",
-    "soundMode": "UnMute",
-    "colorHex": "#000000",
-    "language": "English",
-    "balls": 10,
-    "soundTrackPath": "agha reza"
-  },
-  {
-    "username": "Amoooo",
-    "password": "1a7a020daa87190f999e6e6cace1f8be03508532de1a5f7d89b7ca463f6fce7e",
-    "email": "a@a.a",
-    "imagePath": "/images/Barry.jpeg",
-    "imageNumber": -1,
     "gameMode": "Medium",
     "soundMode": "UnMute",
     "colorHex": "#000000",

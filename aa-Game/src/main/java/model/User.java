@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.scene.paint.Color;
 import utility.*;
 
+import java.util.HashMap;
+
 
 public class User {
     private String username;
@@ -17,12 +19,12 @@ public class User {
     private String language;
     private int balls;
     private String soundTrackPath;
+    private HashMap<String,Integer> HighScores;
 
     public User(String username, String password, String email) throws JsonProcessingException {
         this.username = username;
         setPassword(password);
         this.email = email;
-        DataClass.addUser(this);
         this.imageNumber = RandomGenerator.randomNumber(0,3);
         this.imagePath = RandomGenerator.randomImagePath(this.imageNumber);
         this.gameMode = "Medium";
@@ -30,7 +32,9 @@ public class User {
         this.language = "English";
         setColorHex(Color.BLACK);
         this.balls = 10;
-        soundTrackPath = "agha reza";
+        soundTrackPath = "";
+        HighScores = new HashMap<>();
+        DataClass.addUser(this);
         Loader.saveUsers();
     }
 
