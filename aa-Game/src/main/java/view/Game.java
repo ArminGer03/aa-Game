@@ -141,6 +141,7 @@ public class Game extends Application {
             }
             else {
                 stopTimer();
+                finish();
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
