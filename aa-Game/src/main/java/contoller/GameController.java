@@ -89,7 +89,7 @@ public class GameController {
             Game.shotBalls++;
         }
     }
-    public static Boolean collideWithMainBorder(Ball ball){
+    public static Boolean collideWithMainBorder(Ball ball) throws URISyntaxException {
         double y = ball.getCircle().getCenterY();
         double x = ball.getCircle().getCenterX();
         double distanceFromCenter = sqrt( pow( (y - borderCircle.getCenterY()) , 2) + pow( (x - borderCircle.getCenterX()) , 2) );

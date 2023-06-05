@@ -170,7 +170,11 @@ public class Game extends Application {
             }
             else {
                 stopTimer();
-                lose();
+                try {
+                    lose();
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -347,19 +351,31 @@ public class Game extends Application {
     }
 
 
-    public static void lose(){
+    public static void lose() throws URISyntaxException {
         finish();
         BackgroundFill backgroundFill = new BackgroundFill(Color.RED, null, null);
         Background background = new Background(backgroundFill);
         gamePane.setBackground(background);
+        URI uri;
+        uri = LoginMenu.class.getResource("/soundtracks/GameOver.mp3").toURI();
+        Media shootSoundMedia = new Media(uri.toString());
+        MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
+        shootSound.setVolume(0.5);
+        shootSound.play();
     }
 
 
-    public static void win(){
+    public static void win() throws URISyntaxException {
         finish();
         BackgroundFill backgroundFill = new BackgroundFill(Color.GREEN, null, null);
         Background background = new Background(backgroundFill);
         gamePane.setBackground(background);
+        URI uri;
+        uri = LoginMenu.class.getResource("/soundtracks/veryNice.mp3").toURI();
+        Media shootSoundMedia = new Media(uri.toString());
+        MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
+        shootSound.setVolume(0.5);
+        shootSound.play();
     }
 
     public static void finish(){

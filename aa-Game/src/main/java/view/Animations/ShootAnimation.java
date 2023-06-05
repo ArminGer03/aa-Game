@@ -7,6 +7,8 @@ import javafx.util.Duration;
 import model.Ball;
 import view.Game;
 
+import java.net.URISyntaxException;
+
 
 public class ShootAnimation extends Transition {
 
@@ -42,24 +44,38 @@ public class ShootAnimation extends Transition {
         if (y <= 20) {
             pane.getChildren().remove(ball);
             this.stop();
-            Game.lose();
+            try {
+                Game.lose();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         }
         if (x < 0 || x > 500) {
             pane.getChildren().remove(ball);
             this.stop();
-            Game.lose();
-        }
-        else if(GameController.collideWithMainBorder(ball)){
-            this.stop();
-            if (Game.shotBalls == Game.BALLS_COUNT){
-                Game.win();
+            try {
+                Game.lose();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
             }
         }
-        else{
-            y = ball.getCircle().getCenterY() - Speed * Math.cos(WindAngle);
-            x = ball.getCircle().getCenterX() - Speed * Math.sin(WindAngle);
-            ball.getCircle().setCenterY(y);
-            ball.getCircle().setCenterX(x);
+        else {
+            try {
+                if(GameController.collideWithMainBorder(ball)){
+                    this.stop();
+                    if (Game.shotBalls == Game.BALLS_COUNT){
+                        Game.win();
+                    }
+                }
+                else{
+                    y = ball.getCircle().getCenterY() - Speed * Math.cos(WindAngle);
+                    x = ball.getCircle().getCenterX() - Speed * Math.sin(WindAngle);
+                    ball.getCircle().setCenterY(y);
+                    ball.getCircle().setCenterX(x);
+                }
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 
