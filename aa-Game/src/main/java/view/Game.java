@@ -64,13 +64,14 @@ public class Game extends Application {
         URL url = LoginMenu.class.getResource("/fxml/gamePane.fxml");
         Pane gamePane = FXMLLoader.load(url);
         Scene scene = new Scene(gamePane,500,800);
+
         //main circle initializing
         Color mainCircleColor = DataClass.getCurrentUser().getColor();
         MainCircle mainCircle = new MainCircle(250 , 350, mainCircleColor);
+
         //gameController
         gameController = new GameController(mainCircle.getCircleBorder());
         gameController.setMainCircle(mainCircle);
-
 
         //create objects
         Ball[] balls = createBalls(BALLS_COUNT);
@@ -137,7 +138,11 @@ public class Game extends Application {
                     Game.gameController.moveRight(shooter);
                 }
                 else if (keyName.equals("Space") && !isFinished){
-                    Game.gameController.ballShooting(gamePane , balls);
+                    try {
+                        Game.gameController.ballShooting(gamePane , balls);
+                    } catch (URISyntaxException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if (keyName.equals("Tab") && GameController.getIceProgress() == 1 && !isFinished){
                     Game.gameController.iceMode();

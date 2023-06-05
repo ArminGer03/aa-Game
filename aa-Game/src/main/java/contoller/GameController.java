@@ -3,6 +3,8 @@ package contoller;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
@@ -14,7 +16,10 @@ import utility.RandomGenerator;
 import view.Animations.RotateAnimation;
 import view.Animations.ShootAnimation;
 import view.Game;
+import view.LoginMenu;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,12 +72,20 @@ public class GameController {
             shooter.setX(shooter.getX() + 15);
     }
 
-    public void ballShooting(Pane gamePane , Ball[] balls) {
+    public void ballShooting(Pane gamePane , Ball[] balls) throws URISyntaxException {
         if(Game.shotBalls < DataClass.getCurrentUser().getBalls()){
             ShootAnimation shootAnimation =
                     new ShootAnimation(balls[Game.shotBalls],gamePane);
             balls[Game.shotBalls].setBallAnimation(shootAnimation);
             shootAnimation.play();
+
+            URI uri;
+            uri = LoginMenu.class.getResource("/soundtracks/Blip.mp3").toURI();
+            Media shootSoundMedia = new Media(uri.toString());
+            MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
+            shootSound.setVolume(0.5);
+            shootSound.play();
+
             Game.shotBalls++;
         }
     }
