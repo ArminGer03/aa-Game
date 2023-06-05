@@ -10,6 +10,8 @@ import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -55,6 +57,7 @@ public class Game extends Application {
     private static Label WindLabel;
     private static MediaPlayer backGroundTrack;
     private static ProgressBar iceProgressBar;
+    private static ImageView profilePicViewer;
     public static boolean isFinished = false;
 
 
@@ -92,6 +95,7 @@ public class Game extends Application {
         createSoundTrack();
         createIceProgressBar(gamePane);
         createWindTracker(gamePane);
+        createProfilePickViewer(gamePane);
 
         //set difficulty
         setGameDifficulty();
@@ -102,6 +106,7 @@ public class Game extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 
     private void setGameDifficulty() {
         String difficulty = DataClass.getCurrentUser().getGameMode();
@@ -332,6 +337,16 @@ public class Game extends Application {
             //todo add loadup for initial angles
         }
 
+    }
+
+    private void createProfilePickViewer(Pane gamePane) throws URISyntaxException {
+        URI uri = LoginMenu.class.getResource(DataClass.getCurrentUser().getImagePath()).toURI();
+        Image profileImage = new Image(uri.toString(),40,40, true,true);
+        profilePicViewer = new ImageView();
+        profilePicViewer.setImage(profileImage);
+        profilePicViewer.setLayoutX(450);
+        profilePicViewer.setLayoutY(750);
+        gamePane.getChildren().add(profilePicViewer);
     }
 
     public static RotateAnimation getRotateAnimation() {
