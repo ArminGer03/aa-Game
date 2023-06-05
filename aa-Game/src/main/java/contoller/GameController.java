@@ -1,9 +1,11 @@
 package contoller;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
 import model.Ball;
 import model.MainCircle;
 import model.Shooter;
@@ -115,7 +117,7 @@ public class GameController {
     public static boolean ballsTouching(){
         ArrayList<Ball> balls = getRotatingBalls();
         for (int i = 0; i < balls.size(); i++) {
-            for (int j = i+1; j < balls.size(); j++) {
+            for (int j = i + 1; j < balls.size(); j++) {
                 if (balls.get(i).intersects(balls.get(j))) {
                     return true;
                 }
@@ -290,7 +292,17 @@ public class GameController {
                     else {
                         Platform.runLater ( ()->{
                             for (Ball ball : rotatingBalls) {
-                                ball.setVisible(visibility.get());
+                                FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), ball);
+                                if (visibility.get()){
+                                    fadeTransition.setFromValue(1.0);
+                                    fadeTransition.setToValue(0.0);
+                                }
+                                else{
+                                    fadeTransition.setFromValue(0.0);
+                                    fadeTransition.setToValue(1.0);
+                                }
+                                fadeTransition.play();
+                                //ball.setVisible(visibility.get());
                                 ball.setVisibility(visibility.get());
                             }
                             visibility.set(!visibility.get());

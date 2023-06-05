@@ -34,6 +34,7 @@ import view.Animations.ShootAnimation;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.LinkedList;
 
 import static java.lang.Math.PI;
 
@@ -43,6 +44,7 @@ public class Game extends Application {
     public static GameController gameController;
     public static int BALLS_COUNT = DataClass.getCurrentUser().getBalls();
     public static int shotBalls = 0;
+    public static LinkedList<Double> initialRandomAngles;
     private static final int COUNTDOWN_TIME = 90; // in seconds
     private int remainingTime = COUNTDOWN_TIME;
     private static RotateAnimation rotateAnimation;
@@ -77,7 +79,6 @@ public class Game extends Application {
         setBallsPositionInShooter(bounds,balls);
 
         //todo show score
-        //todo show wind degree
 
 
         //add objects to gamePane
@@ -262,19 +263,42 @@ public class Game extends Application {
     }
 
     public static void randomInitialBalls(Pane gamePane){
+
+        //todo get difficulty
         RotateAnimation rotateAnimation = new RotateAnimation(GameController.getRotatingBalls(),
                 GameController.getBorderCircle(), 1,0.01,true);
+        setRotateAnimation(rotateAnimation);
 
-        for (int i = 0; i<6; i++){
-            double angle = RandomGenerator.randomAngle();
-            Ball ball = new Ball(0,0,10,0);
-            ball.getNumberText().setVisible(false);
-            gamePane.getChildren().add(ball);
-            ball.setAngleWithCenter(angle);
-            gameController.getRotatingBalls().add(ball);
-            setRotateAnimation(rotateAnimation);
-            rotateAnimation.play();
+        if (initialRandomAngles == null){
+            initialRandomAngles = new LinkedList<Double>();
+            double angle = 0;
+            for (int i = 0; i < 5; i++){
+                boolean check = true;
+                while(check){
+                    angle = RandomGenerator.randomAngle();
+                    check = false;
+                    inner:
+                    for (double existAngle: initialRandomAngles) {
+                        if(existAngle == angle){
+                            check = true;
+                            break inner;
+                        }
+                    }
+                }
+
+                Ball ball = new Ball(0,0,10,0);
+                ball.setAngleWithCenter(angle);
+                ball.getNumberText().setVisible(false);
+                gamePane.getChildren().add(ball);
+                gameController.getRotatingBalls().add(ball);
+                initialRandomAngles.add(angle);
+                rotateAnimation.play();
+            }
         }
+        else{
+            //todo add loadup for initial angles
+        }
+
     }
 
     public static RotateAnimation getRotateAnimation() {
