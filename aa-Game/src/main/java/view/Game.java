@@ -345,8 +345,5 @@ public class Game extends Application {
             gamePane.setBackground(background);
         }
     }
-    public static void main(String[] args) {
-        launch(args);
-    }
 
 }
