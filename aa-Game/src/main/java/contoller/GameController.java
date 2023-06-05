@@ -11,7 +11,9 @@ import javafx.util.Duration;
 import model.Ball;
 import model.MainCircle;
 import model.Shooter;
+import model.User;
 import utility.DataClass;
+import utility.Loader;
 import utility.RandomGenerator;
 import view.Animations.RotateAnimation;
 import view.Animations.ShootAnimation;
@@ -29,9 +31,8 @@ import static java.lang.Math.*;
 
 public class GameController {
 
-    private String username;
     private static Circle borderCircle;
-    private static ArrayList<Ball> rotatingBalls;
+    private static final ArrayList<Ball> rotatingBalls;
     private static MainCircle mainCircle;
 
     private static int phase;
@@ -62,6 +63,27 @@ public class GameController {
 
     public GameController(Circle borderCircle) {
         this.borderCircle = borderCircle;
+    }
+
+    public static void setHighScore() {
+        User currentUser = DataClass.getCurrentUser();
+        String mode = currentUser.getGameMode();
+        int prevHighScore = currentUser.getHighScores().get(mode);
+        int prevTimeFinished = currentUser.getHighScoreFinishedTime().get(mode);
+        int timeFinished = Game.getRemainingTime();
+        if(score > prevHighScore){
+            currentUser.getHighScores().replace(mode, score);
+            currentUser.getHighScoreFinishedTime().replace(mode,timeFinished);
+            Loader.saveUsers();
+        }
+        else if(score == prevHighScore){
+            if (timeFinished > prevTimeFinished){
+                currentUser.getHighScores().replace(mode, score);
+                currentUser.getHighScoreFinishedTime().replace(mode,timeFinished);
+                Loader.saveUsers();
+            }
+        }
+
     }
 
     public void moveLeft(Shooter shooter) {
@@ -121,11 +143,14 @@ public class GameController {
                rotateAnimation.stop();
                Game.lose();
             }
+            else {
+                //calculate changes:
+                phase = calculatePhase();
+                score = calculateScore();
+                Game.updateScoreLabel();
+                iceProgress = calculateIceProgress();
+            }
 
-            //calculate changes:
-            phase = calculatePhase();
-            score = calculateScore();
-            iceProgress = calculateIceProgress();
 
             return true;
         }
@@ -205,7 +230,6 @@ public class GameController {
         else if (percentShot >= 0.75 && percentShot <= 1){
             score += 4;
         }
-        //todo update score
         return score;
     }
 
@@ -357,7 +381,6 @@ public class GameController {
                                     fadeTransition.setToValue(1.0);
                                 }
                                 fadeTransition.play();
-                                //ball.setVisible(visibility.get());
                                 ball.setVisibility(visibility.get());
                             }
                             visibility.set(!visibility.get());

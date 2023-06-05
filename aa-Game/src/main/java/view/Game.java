@@ -48,13 +48,14 @@ public class Game extends Application {
     public static int shotBalls = 0;
     public static LinkedList<Double> initialRandomAngles;
     private static final int COUNTDOWN_TIME = 90; // in seconds
-    private int remainingTime = COUNTDOWN_TIME;
+    private static int remainingTime = COUNTDOWN_TIME;
     private static RotateAnimation rotateAnimation;
     private static Timeline timeline = null;
 
     private static Pane gamePane;
     private static Label phaseLabel;
     private static Label WindLabel;
+    private static Label scoreLabel;
     private static MediaPlayer backGroundTrack;
     private static ProgressBar iceProgressBar;
     private static ImageView profilePicViewer;
@@ -82,9 +83,6 @@ public class Game extends Application {
         Bounds bounds = shooter.getBoundsInParent();
         setBallsPositionInShooter(bounds,balls);
 
-        //todo show score
-
-
         //add objects to gamePane
         gamePane.getChildren().add(shooter);
         gamePane.getChildren().addAll(balls);
@@ -96,6 +94,7 @@ public class Game extends Application {
         createIceProgressBar(gamePane);
         createWindTracker(gamePane);
         createProfilePickViewer(gamePane);
+        createScoreBoard(gamePane);
 
         //set difficulty
         setGameDifficulty();
@@ -203,8 +202,9 @@ public class Game extends Application {
 
     private void createWindTracker(Pane gamePane){
         WindLabel = new Label("Wind: " + gameController.getWindDegree());
-        WindLabel.setLayoutX(400);
+        WindLabel.setLayoutX(420);
         WindLabel.setLayoutY(35);
+        WindLabel.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
         gamePane.getChildren().add(WindLabel);
     }
 
@@ -349,6 +349,19 @@ public class Game extends Application {
         gamePane.getChildren().add(profilePicViewer);
     }
 
+    private void createScoreBoard(Pane gamePane) {
+        scoreLabel = new Label("score: " + GameController.getScore());
+        scoreLabel.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
+        scoreLabel.setLayoutX(420);
+        scoreLabel.setLayoutY(20);
+        gamePane.getChildren().add(scoreLabel);
+    }
+
+    public static void updateScoreLabel() {
+        String scoreText = "score: " + GameController.getScore();
+        scoreLabel.setText(scoreText);
+    }
+
     public static RotateAnimation getRotateAnimation() {
         return rotateAnimation;
     }
@@ -365,6 +378,9 @@ public class Game extends Application {
         this.gamePane = gamePane;
     }
 
+    public static int getRemainingTime() {
+        return remainingTime;
+    }
 
     public static void lose() throws URISyntaxException {
         finish();
@@ -382,6 +398,7 @@ public class Game extends Application {
 
     public static void win() throws URISyntaxException {
         finish();
+        GameController.setHighScore();
         BackgroundFill backgroundFill = new BackgroundFill(Color.GREEN, null, null);
         Background background = new Background(backgroundFill);
         gamePane.setBackground(background);
@@ -411,8 +428,8 @@ public class Game extends Application {
         if (gameController.phase4Activated){
             gameController.phase4Timer.cancel();
         }
-    }
 
+    }
 
 
 }

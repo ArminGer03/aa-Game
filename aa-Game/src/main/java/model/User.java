@@ -20,6 +20,7 @@ public class User {
     private int balls;
     private String soundTrackPath;
     private HashMap<String,Integer> HighScores;
+    private HashMap<String,Integer> HighScoreFinishedTime;
 
     public User(String username, String password, String email) throws JsonProcessingException {
         this.username = username;
@@ -34,6 +35,13 @@ public class User {
         this.balls = 10;
         soundTrackPath = "";
         HighScores = new HashMap<>();
+        HighScoreFinishedTime = new HashMap<>();
+        HighScores.put("Easy",0);
+        HighScores.put("Medium",0);
+        HighScores.put("Hard",0);
+        HighScoreFinishedTime.put("Easy",-1);
+        HighScoreFinishedTime.put("Medium",-1);
+        HighScoreFinishedTime.put("Hard",-1);
         DataClass.addUser(this);
         Loader.saveUsers();
     }
@@ -125,6 +133,14 @@ public class User {
 
     public void setSoundTrackPath(String soundTrackPath) {
         this.soundTrackPath = soundTrackPath;
+    }
+
+    public HashMap<String, Integer> getHighScores() {
+        return HighScores;
+    }
+
+    public HashMap<String, Integer> getHighScoreFinishedTime() {
+        return HighScoreFinishedTime;
     }
 
 }

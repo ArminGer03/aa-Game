@@ -1,28 +1,48 @@
 [
   {
-  "username": "a",
-  "password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
-  "email": "a@a.a",
-  "imagePath": "/images/Barry.jpeg",
-  "imageNumber": -1,
-  "gameMode": "Medium",
-  "soundMode": "UnMute",
-  "colorHex": "#000000",
-  "language": "English",
-  "balls": 12,
-  "soundTrackPath": "agha reza"
+    "username": "a",
+    "password": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+    "email": "a@a.a",
+    "imagePath": "/images/Barry.jpeg",
+    "imageNumber": -1,
+    "gameMode": "Medium",
+    "soundMode": "UnMute",
+    "colorHex": "#000000",
+    "language": "English",
+    "balls": 12,
+    "soundTrackPath": " ",
+    "HighScores": {
+      "Easy": 0,
+      "Medium": 33,
+      "Hard": 0
+    },
+    "HighScoreFinishedTime": {
+      "Easy": -1,
+      "Medium": 78,
+      "Hard": -1
+    }
   },
   {
     "username": "Guest",
     "password": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
     "email": " ",
     "imagePath": "/images/guest.jpeg",
-    "imageNumber": 3,
+    "imageNumber": -1,
     "gameMode": "Medium",
     "soundMode": "UnMute",
     "colorHex": "#000000",
     "language": "English",
     "balls": 12,
-    "soundTrackPath": "agha reza"
+    "soundTrackPath": "",
+    "HighScores": {
+      "Easy": 0,
+      "Medium": 0,
+      "Hard": 0
+    },
+    "HighScoreFinishedTime": {
+      "Easy": -1,
+      "Medium": -1,
+      "Hard": -1
+    }
   }
 ]
