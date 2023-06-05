@@ -25,7 +25,7 @@ public class User {
         DataClass.addUser(this);
         this.imageNumber = RandomGenerator.randomNumber(0,3);
         this.imagePath = RandomGenerator.randomImagePath(this.imageNumber);
-        this.gameMode = "Easy";
+        this.gameMode = "Medium";
         this.soundMode = "UnMute";
         this.language = "English";
         setColorHex(Color.BLACK);

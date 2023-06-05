@@ -32,13 +32,15 @@ public class GameController {
     private static int phase;
     private static int  WindDegree;
     private static double iceProgress;
+    private static double iceModeDifficulty;
     public static boolean iceModeActivated;
     public static boolean phase2Activated;
     public static boolean phase3Activated;
     public static boolean phase4Activated;
 
     public static Timer timerIce;
-    public static Timer phase2Timer;
+    public static Timer phase2TimerDirection;
+    public static Timer phase2TimerSize;
     public static Timer phase3Timer;
     public static Timer phase4Timer;
 
@@ -106,7 +108,7 @@ public class GameController {
 
             if(ballsTouching()){
                rotateAnimation.stop();
-               Game.finish();
+               Game.lose();
             }
 
             return true;
@@ -206,7 +208,7 @@ public class GameController {
                         timer.cancel();
                     }
                     iceModeActivated = true;
-                    iceProgress -= 0.25;
+                    iceProgress -= (1 / iceModeDifficulty);
                     rotateAnimation.setRotationSpeed(slowerSpeed);
                     if (iceProgress <= 0) {
                         iceModeActivated = false;
@@ -233,7 +235,7 @@ public class GameController {
     public void changeDirectionPhase2(){
         RotateAnimation rotateAnimation = Game.getRotateAnimation();
         Timer timer = new Timer ();
-        phase2Timer = timer;
+        phase2TimerDirection = timer;
         timer.schedule ( new TimerTask() {
             @Override
             public void run() {
@@ -250,26 +252,39 @@ public class GameController {
 
     }
     public void changeBallSizePhase2(){
-        new Thread(() -> {
-            while (true) {
-                for (Ball ball : rotatingBalls) {
-                    ball.getCircle().setRadius(11);
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                for (Ball ball : rotatingBalls) {
-                    ball.getCircle().setRadius(9);
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+        Timer timer = new Timer ();
+        phase2TimerSize = timer;
+        timer.schedule ( new TimerTask() {
+            @Override
+            public void run() {
+
+
+                Platform.runLater ( ()->{
+                    for (Ball ball : rotatingBalls) {
+                        ball.getCircle().setRadius(11);
+                    }
+
+                } );
+
             }
-        }).start();
+        }, 0, (long) (1000) );
+
+        timer.schedule ( new TimerTask() {
+            @Override
+            public void run() {
+
+
+                Platform.runLater ( ()->{
+                    for (Ball ball : rotatingBalls) {
+                        ball.getCircle().setRadius(9);
+                    }
+
+                } );
+
+            }
+        }, 0, (long) (1000) );
+
     }
 
     public void activatePhase3(){
@@ -337,6 +352,9 @@ public class GameController {
         }
     }
 
+    public static void setIceModeDifficulty(double iceModeDifficulty) {
+        GameController.iceModeDifficulty = iceModeDifficulty;
+    }
 
     public static int getWindDegree() {
         return WindDegree;

@@ -14,7 +14,7 @@ public class RotateAnimation extends Transition {
     private ArrayList<Ball> rotatingBalls;
     private Circle borderCircle;
     private int direction;
-    private double rotationSpeed;
+    private static double RotationSpeed;
     private boolean visibility;
 
     public RotateAnimation(ArrayList<Ball> rotatingBalls, Circle borderCircle, int direction, double rotationSpeed,
@@ -22,7 +22,7 @@ public class RotateAnimation extends Transition {
         this.rotatingBalls = rotatingBalls;
         this.borderCircle = borderCircle;
         this.direction = direction;
-        this.rotationSpeed = rotationSpeed;
+        this.RotationSpeed = rotationSpeed;
         this.visibility = visibility;
         this.setCycleCount(-1);
         this.setCycleDuration(Duration.millis(5000));
@@ -34,7 +34,7 @@ public class RotateAnimation extends Transition {
 
         for ( Ball ball:this.rotatingBalls ){
             double angle = ball.getAngleWithCenter();
-            angle = (angle + rotationSpeed*direction) % (2 * PI);
+            angle = (angle + RotationSpeed*direction) % (2 * PI);
             ball.setAngleWithCenter( angle );
             double x = borderCircle.getCenterX() - borderCircle.getRadius() * Math.sin(angle);
             double y = borderCircle.getCenterY() - borderCircle.getRadius() * Math.cos(angle);
@@ -47,11 +47,11 @@ public class RotateAnimation extends Transition {
     }
 
     public double getRotationSpeed() {
-        return rotationSpeed;
+        return RotationSpeed;
     }
 
-    public void setRotationSpeed(double rotationSpeed) {
-        this.rotationSpeed = rotationSpeed;
+    public static void setRotationSpeed(double rotationSpeed) {
+        RotationSpeed = rotationSpeed;
     }
 
     public int getDirection() {

@@ -92,11 +92,35 @@ public class Game extends Application {
         createIceProgressBar(gamePane);
         createWindTracker(gamePane);
 
+        //set difficulty
+        setGameDifficulty();
+
         setGamePane(gamePane);
 
         gamePane.getChildren().get(0).requestFocus();
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void setGameDifficulty() {
+        String difficulty = DataClass.getCurrentUser().getGameMode();
+        switch (difficulty){
+            case "Easy":
+                ShootAnimation.setSpeed(10);
+                RotateAnimation.setRotationSpeed(0.005);
+                GameController.setIceModeDifficulty(7);
+                break;
+            case "Medium":
+                ShootAnimation.setSpeed(15);
+                RotateAnimation.setRotationSpeed(0.010);
+                GameController.setIceModeDifficulty(5);
+                break;
+            case "Hard":
+                ShootAnimation.setSpeed(20);
+                RotateAnimation.setRotationSpeed(0.015);
+                GameController.setIceModeDifficulty(3);
+                break;
+        }
     }
 
     private Shooter createShooter(Pane gamePane,Ball[] balls) {
@@ -141,7 +165,7 @@ public class Game extends Application {
             }
             else {
                 stopTimer();
-                finish();
+                lose();
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -265,7 +289,6 @@ public class Game extends Application {
 
     public static void randomInitialBalls(Pane gamePane){
 
-        //todo get difficulty
         RotateAnimation rotateAnimation = new RotateAnimation(GameController.getRotatingBalls(),
                 GameController.getBorderCircle(), 1,0.01,true);
         setRotateAnimation(rotateAnimation);
@@ -318,6 +341,22 @@ public class Game extends Application {
         this.gamePane = gamePane;
     }
 
+
+    public static void lose(){
+        finish();
+        BackgroundFill backgroundFill = new BackgroundFill(Color.RED, null, null);
+        Background background = new Background(backgroundFill);
+        gamePane.setBackground(background);
+    }
+
+
+    public static void win(){
+        finish();
+        BackgroundFill backgroundFill = new BackgroundFill(Color.GREEN, null, null);
+        Background background = new Background(backgroundFill);
+        gamePane.setBackground(background);
+    }
+
     public static void finish(){
         isFinished = true;
         backGroundTrack.stop();
@@ -327,7 +366,8 @@ public class Game extends Application {
             gameController.timerIce.cancel();
         }
         if (gameController.phase2Activated){
-            gameController.phase2Timer.cancel();
+            gameController.phase2TimerSize.cancel();
+            gameController.phase2TimerDirection.cancel();
         }
         if (gameController.phase3Activated){
             gameController.phase3Timer.cancel();
@@ -335,16 +375,8 @@ public class Game extends Application {
         if (gameController.phase4Activated){
             gameController.phase4Timer.cancel();
         }
-        if (shotBalls == BALLS_COUNT){
-            BackgroundFill backgroundFill = new BackgroundFill(Color.GREEN, null, null);
-            Background background = new Background(backgroundFill);
-            gamePane.setBackground(background);
-        }
-        else if (shotBalls < BALLS_COUNT){
-            BackgroundFill backgroundFill = new BackgroundFill(Color.RED, null, null);
-            Background background = new Background(backgroundFill);
-            gamePane.setBackground(background);
-        }
     }
+
+
 
 }
