@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import utility.DataClass;
 import view.Game;
 import view.MainMenu;
+import view.ScoreBoardMenu;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,8 +42,8 @@ public class MainMenuGController {
         borderPane.setCenter(root);
     }
 
-    public void scoreBoard() {
-        //todo scoreboard
+    public void scoreBoard() throws Exception {
+        new ScoreBoardMenu().start(DataClass.getStage());
     }
 
     public void exit() {

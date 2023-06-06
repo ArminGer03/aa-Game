@@ -170,10 +170,13 @@ public class Game extends Application {
                     throw new RuntimeException(e);
                 }
             }
-            else if (keyName.equals("Enter") && !isFinished){
-                playGame();
+            else if (keyName.equals("Space") && isFinished){
+                try {
+                    new ScoreBoardMenu().start(DataClass.getStage());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
-            //todo press space to go to next menu when finished
 
             //todo add esc for pause
 

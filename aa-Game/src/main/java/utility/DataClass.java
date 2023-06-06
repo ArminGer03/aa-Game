@@ -4,6 +4,8 @@ import javafx.stage.Stage;
 import model.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DataClass {
     private static Stage stage;
@@ -36,6 +38,22 @@ public class DataClass {
 
     public static ArrayList<User> getUsers() {
         return users;
+    }
+
+    public static ArrayList<User> getUsersByMode(String mode) {
+        ArrayList<User> output = new ArrayList<>();
+        for (User user : users) {
+            if(user.getHighScores().get(mode) != 0)
+                output.add(user);
+        }
+        Collections.sort(output, new Comparator<User>() {
+            @Override
+            public int compare(User s1, User s2) {
+                return s2.getHighScores().get(mode) - s1.getHighScores().get(mode);
+            }
+        });
+
+        return output;
     }
 
     public static void addUser(User user) {
