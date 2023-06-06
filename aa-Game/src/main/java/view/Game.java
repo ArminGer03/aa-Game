@@ -14,9 +14,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -34,6 +32,7 @@ import utility.RandomGenerator;
 import view.Animations.RotateAnimation;
 import view.Animations.ShootAnimation;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -118,7 +117,7 @@ public class Game extends Application {
     }
 
 
-    private void setGameDifficulty() {
+    public static void setGameDifficulty() {
         String difficulty = DataClass.getCurrentUser().getGameMode();
         switch (difficulty){
             case "Easy":
@@ -165,7 +164,11 @@ public class Game extends Application {
                     Game.gameController.iceMode();
                 }
                 else if (keyName.equals("Esc") && !isFinished){
-                    pauseGame();
+                    try {
+                        pauseGame();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if (keyName.equals("Enter") && !isFinished){
                     playGame();
@@ -458,16 +461,25 @@ public class Game extends Application {
         //todo press space to go to next menu
     }
 
-    private void pauseGame() {
+    private void pauseGame() throws IOException {
 
         if(DataClass.getCurrentUser().isUnMute()){
             backGroundTrack.pause();
         }
         rotateAnimation.pause();
         timeline.pause();
+
+
+        Stage pauseStage = new Stage();
+        URL url = LoginMenu.class.getResource("/fxml/PauseMenu.fxml");
+        AnchorPane anchorPane = FXMLLoader.load(url);
+        Scene scene = new Scene(anchorPane,600,400);
+        pauseStage.setScene(scene);
+        DataClass.setPauseStage(pauseStage);
+        pauseStage.show();
     }
 
-    private void playGame() {
+    public static void playGame() {
         if(DataClass.getCurrentUser().isUnMute()){
             backGroundTrack.play();
         }
@@ -475,4 +487,22 @@ public class Game extends Application {
         timeline.play();
     }
 
+    public static void changeMusic() throws URISyntaxException {
+        if(DataClass.getCurrentUser().isUnMute()){
+            String path = "/soundtracks/" + DataClass.getCurrentUser().getSoundTrackPath() + ".mp3";
+            URI uri = LoginMenu.class.getResource(path).toURI();
+            Media soundtrack = new Media(uri.toString());
+
+            if (backGroundTrack.getStatus() == MediaPlayer.Status.PLAYING ||
+                    backGroundTrack.getStatus() == MediaPlayer.Status.PAUSED) {
+                backGroundTrack.stop();
+            }
+
+            backGroundTrack = new MediaPlayer(soundtrack);
+
+            backGroundTrack.setVolume(0.1);
+
+            backGroundTrack.play();
+        }
+    }
 }

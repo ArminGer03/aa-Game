@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class DataClass {
     private static Stage stage;
+    private static Stage PauseStage;
     private static ArrayList<User> users ;
     private static User currentUser;
 
@@ -23,6 +24,14 @@ public class DataClass {
 
     public static void setStage(Stage stage) {
         DataClass.stage = stage;
+    }
+
+    public static Stage getPauseStage() {
+        return PauseStage;
+    }
+
+    public static void setPauseStage(Stage pauseStage) {
+        PauseStage = pauseStage;
     }
 
     public static ArrayList<User> getUsers() {

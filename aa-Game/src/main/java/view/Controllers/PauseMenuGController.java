@@ -10,7 +10,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import utility.DataClass;
+import view.Game;
 
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 public class PauseMenuGController {
@@ -56,6 +58,7 @@ public class PauseMenuGController {
     public void changeDifficulty(MouseEvent mouseEvent) {
         modeChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
             DataClass.getCurrentUser().setGameMode(modeChoice.getValue());
+            Game.setGameDifficulty();
         });
     }
 
@@ -86,15 +89,21 @@ public class PauseMenuGController {
     public void changeMusic(MouseEvent mouseEvent) {
         musicChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
             DataClass.getCurrentUser().setSoundTrackPath(musicChoice.getValue());
+            try {
+                Game.changeMusic();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         });
+
     }
 
-    public void restartGame(ActionEvent actionEvent) {
-
+    public void restartGame(ActionEvent actionEvent) throws Exception {
     }
 
     public void resumeGame(ActionEvent actionEvent) {
-
+        DataClass.getPauseStage().close();
+        Game.playGame();
     }
 
     public void exitGame(ActionEvent actionEvent) {
