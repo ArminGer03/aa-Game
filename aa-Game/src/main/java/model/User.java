@@ -18,6 +18,9 @@ public class User {
     private String colorHex;
     private String theme;
     private String language;
+    private String shootKey;
+    private String leftKey;
+    private String rightKey;
     private int balls;
     private String soundTrackPath;
     private HashMap<String,Integer> HighScores;
@@ -33,9 +36,12 @@ public class User {
         this.soundMode = "UnMute";
         this.language = "English";
         this.theme = "Normal";
+        this.shootKey = "Space";
+        this.leftKey = "Left";
+        this.rightKey = "right";
         setColorHex(Color.BLACK);
         this.balls = 10;
-        soundTrackPath = "";
+        soundTrackPath = "evolution";
         HighScores = new HashMap<>();
         HighScoreFinishedTime = new HashMap<>();
         HighScores.put("Easy",0);
@@ -144,6 +150,34 @@ public class User {
 
     public void setSoundTrackPath(String soundTrackPath) {
         this.soundTrackPath = soundTrackPath;
+        Loader.saveUsers();
+    }
+
+    public String getShootKey() {
+        return shootKey;
+    }
+
+    public void setShootKey(String shootKey) {
+        this.shootKey = shootKey;
+        Loader.saveUsers();
+    }
+
+    public String getLeftKey() {
+        return leftKey;
+    }
+
+    public void setLeftKey(String leftKey) {
+        this.leftKey = leftKey;
+        Loader.saveUsers();
+    }
+
+    public String getRightKey() {
+        return rightKey;
+    }
+
+    public void setRightKey(String rightKey) {
+        this.rightKey = rightKey;
+        Loader.saveUsers();
     }
 
     public HashMap<String, Integer> getHighScores() {

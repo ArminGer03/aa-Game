@@ -21,6 +21,14 @@ public class SettingMenuGController {
     @FXML
     private ChoiceBox<String> themeChoice;
     @FXML
+    private ChoiceBox<String> shootKeyChoice;
+    @FXML
+    private ChoiceBox<String> leftKeyChoice;
+    @FXML
+    private ChoiceBox<String> rightKeyChoice;
+    @FXML
+    private ChoiceBox<String> musicChoice;
+    @FXML
     private ColorPicker colorChoice;
 
 
@@ -29,6 +37,10 @@ public class SettingMenuGController {
     ObservableList<String> langChoiceList = FXCollections.observableArrayList("English", "Persian");
     ObservableList<String> ballsChoiceList = FXCollections.observableArrayList("10", "11","12","13","14","15");
     ObservableList<String> themeChoiceList = FXCollections.observableArrayList("Normal", "B&W");
+    ObservableList<String> musicChoiceList = FXCollections.observableArrayList("evolution", "jazzyfrenchy","summer");
+    ObservableList<String> shootChoiceList = FXCollections.observableArrayList("Space", "S","J","Enter");
+    ObservableList<String> leftChoiceList = FXCollections.observableArrayList("Left", "A","H");
+    ObservableList<String> rightChoiceList = FXCollections.observableArrayList("Right", "D","K");
 
 
     @FXML
@@ -38,12 +50,20 @@ public class SettingMenuGController {
          langChoice.setItems(langChoiceList);
          ballsChoice.setItems(ballsChoiceList);
          themeChoice.setItems(themeChoiceList);
+         musicChoice.setItems(musicChoiceList);
+         shootKeyChoice.setItems(shootChoiceList);
+         leftKeyChoice.setItems(leftChoiceList);
+         rightKeyChoice.setItems(rightChoiceList);
          modeChoice.setValue(DataClass.getCurrentUser().getGameMode());
          songChoice.setValue(DataClass.getCurrentUser().getSoundMode());
          langChoice.setValue(DataClass.getCurrentUser().getLanguage());
          ballsChoice.setValue(Integer.toString(DataClass.getCurrentUser().getBalls()));
          colorChoice.setValue(DataClass.getCurrentUser().getColor());
          themeChoice.setValue(DataClass.getCurrentUser().getTheme());
+         musicChoice.setValue(DataClass.getCurrentUser().getSoundTrackPath());
+         shootKeyChoice.setValue(DataClass.getCurrentUser().getShootKey());
+         leftKeyChoice.setValue(DataClass.getCurrentUser().getLeftKey());
+         rightKeyChoice.setValue(DataClass.getCurrentUser().getRightKey());
     }
 
 
@@ -84,14 +104,26 @@ public class SettingMenuGController {
     }
 
     public void changeShootKey(MouseEvent mouseEvent) {
+        shootKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setShootKey(shootKeyChoice.getValue());
+        });
     }
 
     public void changeLeftKey(MouseEvent mouseEvent) {
+        leftKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setLeftKey(leftKeyChoice.getValue());
+        });
     }
 
     public void changeRightKey(MouseEvent mouseEvent) {
+        rightKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setRightKey(rightKeyChoice.getValue());
+        });
     }
 
     public void changeMusic(MouseEvent mouseEvent) {
+        musicChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setSoundTrackPath(musicChoice.getValue());
+        });
     }
 }

@@ -10,8 +10,11 @@
     "colorHex": "#000000",
     "theme": "B\u0026W",
     "language": "English",
+    "shootKey": "Space",
+    "leftKey": "Left",
+    "rightKey": "Right",
     "balls": 10,
-    "soundTrackPath": " ",
+    "soundTrackPath": "evolution",
     "HighScores": {
       "Easy": 0,
       "Medium": 27,
