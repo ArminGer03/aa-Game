@@ -10,6 +10,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -67,6 +68,15 @@ public class Game extends Application {
         //make scene
         URL url = LoginMenu.class.getResource("/fxml/gamePane.fxml");
         Pane gamePane = FXMLLoader.load(url);
+
+        //B&W theme
+        if (!DataClass.getCurrentUser().isNormalTheme()){
+            ColorAdjust colorAdjust = new ColorAdjust();
+            colorAdjust.setSaturation(-1.0);
+            gamePane.setEffect(colorAdjust);
+        }
+
+
         Scene scene = new Scene(gamePane,500,800);
 
         //main circle initializing
@@ -102,6 +112,7 @@ public class Game extends Application {
         setGamePane(gamePane);
 
         gamePane.getChildren().get(0).requestFocus();
+
         stage.setScene(scene);
         stage.show();
     }

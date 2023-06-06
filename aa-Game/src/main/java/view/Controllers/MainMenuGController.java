@@ -64,8 +64,8 @@ public class MainMenuGController {
         new Game().start(DataClass.getStage());
     }
 
-    public void resumeGame(MouseEvent mouseEvent) {
-        //todo save game
+    public void resumeGame(MouseEvent mouseEvent) throws Exception {
+        new Game().start(DataClass.getStage());
     }
 
     public void start1v1Game(MouseEvent mouseEvent) {

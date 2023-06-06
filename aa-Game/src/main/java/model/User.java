@@ -16,6 +16,7 @@ public class User {
     private String gameMode;
     private String soundMode;
     private String colorHex;
+    private String theme;
     private String language;
     private int balls;
     private String soundTrackPath;
@@ -31,6 +32,7 @@ public class User {
         this.gameMode = "Medium";
         this.soundMode = "UnMute";
         this.language = "English";
+        this.theme = "Normal";
         setColorHex(Color.BLACK);
         this.balls = 10;
         soundTrackPath = "";
@@ -127,6 +129,15 @@ public class User {
         Loader.saveUsers();
     }
 
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+        Loader.saveUsers();
+    }
+
     public String getSoundTrackPath() {
         return soundTrackPath;
     }
@@ -146,5 +157,10 @@ public class User {
     public boolean isUnMute(){
         return this.soundMode.equals("UnMute");
     }
+
+    public Boolean isNormalTheme(){
+        return this.theme.equals("Normal");
+    }
+
 
 }

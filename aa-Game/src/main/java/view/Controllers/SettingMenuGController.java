@@ -19,6 +19,8 @@ public class SettingMenuGController {
     @FXML
     private ChoiceBox<String> ballsChoice;
     @FXML
+    private ChoiceBox<String> themeChoice;
+    @FXML
     private ColorPicker colorChoice;
 
 
@@ -26,6 +28,7 @@ public class SettingMenuGController {
     ObservableList<String> songChoiceList = FXCollections.observableArrayList("Mute", "UnMute");
     ObservableList<String> langChoiceList = FXCollections.observableArrayList("English", "Persian");
     ObservableList<String> ballsChoiceList = FXCollections.observableArrayList("10", "11","12","13","14","15");
+    ObservableList<String> themeChoiceList = FXCollections.observableArrayList("Normal", "B&W");
 
 
     @FXML
@@ -34,11 +37,13 @@ public class SettingMenuGController {
          songChoice.setItems(songChoiceList);
          langChoice.setItems(langChoiceList);
          ballsChoice.setItems(ballsChoiceList);
+         themeChoice.setItems(themeChoiceList);
          modeChoice.setValue(DataClass.getCurrentUser().getGameMode());
          songChoice.setValue(DataClass.getCurrentUser().getSoundMode());
          langChoice.setValue(DataClass.getCurrentUser().getLanguage());
          ballsChoice.setValue(Integer.toString(DataClass.getCurrentUser().getBalls()));
          colorChoice.setValue(DataClass.getCurrentUser().getColor());
+         themeChoice.setValue(DataClass.getCurrentUser().getTheme());
     }
 
 
@@ -70,5 +75,23 @@ public class SettingMenuGController {
         ballsChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
             DataClass.getCurrentUser().setBalls(Integer.parseInt(ballsChoice.getValue()));
         });
+    }
+
+    public void changeTheme(MouseEvent mouseEvent) {
+        themeChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            DataClass.getCurrentUser().setTheme(themeChoice.getValue());
+        });
+    }
+
+    public void changeShootKey(MouseEvent mouseEvent) {
+    }
+
+    public void changeLeftKey(MouseEvent mouseEvent) {
+    }
+
+    public void changeRightKey(MouseEvent mouseEvent) {
+    }
+
+    public void changeMusic(MouseEvent mouseEvent) {
     }
 }
