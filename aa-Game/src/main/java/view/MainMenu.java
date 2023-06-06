@@ -14,6 +14,7 @@ public class MainMenu extends Application {
     public void start(Stage stage) throws Exception {
         DataClass.setStage(stage);
         URL url = LoginMenu.class.getResource("/fxml/MainMenu.fxml");
+        assert url != null;
         BorderPane borderPane = FXMLLoader.load(url);
         Scene scene = new Scene(borderPane,650,400);
         stage.setScene(scene);

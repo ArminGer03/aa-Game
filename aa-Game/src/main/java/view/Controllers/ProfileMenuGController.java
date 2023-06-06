@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import model.User;
 import utility.DataClass;
@@ -114,7 +113,7 @@ public class ProfileMenuGController {
         });
     }
 
-    public void getImage(MouseEvent mouseEvent) throws IOException {
+    public void getImage() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Profile Image");
         File selectedFile = fileChooser.showOpenDialog(DataClass.getStage());
@@ -144,7 +143,7 @@ public class ProfileMenuGController {
         }
     }
 
-    public void checkBoxCheck(MouseEvent mouseEvent) {
+    public void checkBoxCheck() {
         if (check0.isSelected()){
             currentUser.setImage(RandomGenerator.randomImagePath(0),0);
         }
@@ -200,7 +199,7 @@ public class ProfileMenuGController {
         profileImageView.setImage(avatar);
     }
 
-    public void change(MouseEvent mouseEvent) {
+    public void change() {
         if (!newUsername.getText().isEmpty() && errorUser.getText() == null){
             currentUser.setUsername(newUsername.getText());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -231,7 +230,7 @@ public class ProfileMenuGController {
         errorPass.setText(null);
     }
 
-    public void deleteUser(MouseEvent mouseEvent) throws Exception {
+    public void deleteUser() throws Exception {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Are you sure you want to delete this user?");

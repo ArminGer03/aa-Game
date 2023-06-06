@@ -2,11 +2,9 @@ package view.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.input.MouseEvent;
 import utility.DataClass;
 
 public class SettingMenuGController {
@@ -67,63 +65,53 @@ public class SettingMenuGController {
     }
 
 
-    public void changeDifficulty(MouseEvent mouseEvent) {
-        modeChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setGameMode(modeChoice.getValue());
-        });
+    public void changeDifficulty() {
+        modeChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setGameMode(modeChoice.getValue()));
     }
 
-    public void changeSound(MouseEvent mouseEvent) {
-        songChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setSoundMode(songChoice.getValue());
-        });
+    public void changeSound() {
+        songChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setSoundMode(songChoice.getValue()));
     }
 
-    public void changeLanguage(MouseEvent mouseEvent) {
-        langChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setLanguage(langChoice.getValue());
-        });
+    public void changeLanguage() {
+        langChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setLanguage(langChoice.getValue()));
     }
 
-    public void changeColor(ActionEvent actionEvent) {
-        colorChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setColorHex(colorChoice.getValue());
-        });
+    public void changeColor() {
+        colorChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setColorHex(colorChoice.getValue()));
     }
 
-    public void changeBalls(MouseEvent mouseEvent) {
-        ballsChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setBalls(Integer.parseInt(ballsChoice.getValue()));
-        });
+    public void changeBalls() {
+        ballsChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setBalls(Integer.parseInt(ballsChoice.getValue())));
     }
 
-    public void changeTheme(MouseEvent mouseEvent) {
-        themeChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setTheme(themeChoice.getValue());
-        });
+    public void changeTheme() {
+        themeChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setTheme(themeChoice.getValue()));
     }
 
-    public void changeShootKey(MouseEvent mouseEvent) {
-        shootKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setShootKey(shootKeyChoice.getValue());
-        });
+    public void changeShootKey() {
+        shootKeyChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setShootKey(shootKeyChoice.getValue()));
     }
 
-    public void changeLeftKey(MouseEvent mouseEvent) {
-        leftKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setLeftKey(leftKeyChoice.getValue());
-        });
+    public void changeLeftKey() {
+        leftKeyChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setLeftKey(leftKeyChoice.getValue()));
     }
 
-    public void changeRightKey(MouseEvent mouseEvent) {
-        rightKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setRightKey(rightKeyChoice.getValue());
-        });
+    public void changeRightKey() {
+        rightKeyChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setRightKey(rightKeyChoice.getValue()));
     }
 
-    public void changeMusic(MouseEvent mouseEvent) {
-        musicChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setSoundTrackPath(musicChoice.getValue());
-        });
+    public void changeMusic() {
+        musicChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setSoundTrackPath(musicChoice.getValue()));
     }
 }
