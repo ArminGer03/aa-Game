@@ -4,7 +4,6 @@ import contoller.GameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
@@ -13,8 +12,10 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -37,6 +38,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.Objects;
 
 import static java.lang.Math.PI;
 
@@ -58,7 +60,6 @@ public class Game extends Application {
     private static Label scoreLabel;
     private static MediaPlayer backGroundTrack;
     private static ProgressBar iceProgressBar;
-    private static ImageView profilePicViewer;
     public static boolean isFinished = false;
 
 
@@ -66,6 +67,7 @@ public class Game extends Application {
     public void start(Stage stage) throws Exception {
         //make scene
         URL url = LoginMenu.class.getResource("/fxml/gamePane.fxml");
+        assert url != null;
         Pane gamePane = FXMLLoader.load(url);
 
         //B&W theme
@@ -119,68 +121,65 @@ public class Game extends Application {
 
     public static void setGameDifficulty() {
         String difficulty = DataClass.getCurrentUser().getGameMode();
-        switch (difficulty){
-            case "Easy":
+        switch (difficulty) {
+            case "Easy" -> {
                 ShootAnimation.setSpeed(10);
                 RotateAnimation.setRotationSpeed(0.005);
                 GameController.setIceModeDifficulty(7);
-                break;
-            case "Medium":
+            }
+            case "Medium" -> {
                 ShootAnimation.setSpeed(15);
                 RotateAnimation.setRotationSpeed(0.010);
                 GameController.setIceModeDifficulty(5);
-                break;
-            case "Hard":
+            }
+            case "Hard" -> {
                 ShootAnimation.setSpeed(20);
                 RotateAnimation.setRotationSpeed(0.015);
                 GameController.setIceModeDifficulty(3);
-                break;
+            }
         }
     }
 
     private Shooter createShooter(Pane gamePane,Ball[] balls) {
         Shooter shooter = new Shooter(245,590,10,185);
-        shooter.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                String keyName = keyEvent.getCode().getName();
+        shooter.setOnKeyPressed(keyEvent -> {
+            String keyName = keyEvent.getCode().getName();
 
-                if (keyName.equals(DataClass.getCurrentUser().getLeftKey()) &&
-                        GameController.getPhase() == 4 && !isFinished){
-                    Game.gameController.moveLeft(shooter);
-                }
-                else if (keyName.equals(DataClass.getCurrentUser().getRightKey()) &&
-                        GameController.getPhase() == 4 && !isFinished){
-                    Game.gameController.moveRight(shooter);
-                }
-                else if (keyName.equals(DataClass.getCurrentUser().getShootKey()) && !isFinished){
-                    try {
-                        Game.gameController.ballShooting(gamePane , balls);
-                    } catch (URISyntaxException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                else if (keyName.equals("Tab") && GameController.getIceProgress() == 1 && !isFinished){
-                    Game.gameController.iceMode();
-                }
-                else if (keyName.equals("Esc") && !isFinished){
-                    try {
-                        pauseGame();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                else if (keyName.equals("Enter") && !isFinished){
-                    playGame();
-                }
-                //todo press space to go to next menu when finished
-
-                //todo add esc for pause
-
-                Bounds bounds = shooter.getBoundsInParent();
-                setBallsPositionInShooter(bounds,balls);
-
+            if (keyName.equals(DataClass.getCurrentUser().getLeftKey()) &&
+                    GameController.getPhase() == 4 && !isFinished){
+                Game.gameController.moveLeft(shooter);
             }
+            else if (keyName.equals(DataClass.getCurrentUser().getRightKey()) &&
+                    GameController.getPhase() == 4 && !isFinished){
+                Game.gameController.moveRight(shooter);
+            }
+            else if (keyName.equals(DataClass.getCurrentUser().getShootKey()) && !isFinished){
+                try {
+                    Game.gameController.ballShooting(gamePane , balls);
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else if (keyName.equals("Tab") && GameController.getIceProgress() == 1 && !isFinished){
+                Game.gameController.iceMode();
+            }
+            else if (keyName.equals("Esc") && !isFinished){
+                try {
+                    pauseGame();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else if (keyName.equals("Enter") && !isFinished){
+                playGame();
+            }
+            //todo press space to go to next menu when finished
+
+            //todo add esc for pause
+
+            Bounds bounds = shooter.getBoundsInParent();
+            setBallsPositionInShooter(bounds,balls);
+
         });
 
         return shooter;
@@ -224,7 +223,7 @@ public class Game extends Application {
     }
 
     private void createWindTracker(Pane gamePane){
-        WindLabel = new Label("Wind: " + gameController.getWindDegree());
+        WindLabel = new Label("Wind: " + GameController.getWindDegree());
         WindLabel.setLayoutX(420);
         WindLabel.setLayoutY(35);
         WindLabel.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
@@ -239,7 +238,7 @@ public class Game extends Application {
     }
 
     private static void createPhaseTracker(Pane gamePane){
-        phaseLabel = new Label("Phase " + gameController.getPhase());
+        phaseLabel = new Label("Phase " + GameController.getPhase());
         updatePhaseLabel(GameController.getPhase());
         phaseLabel.setLayoutX(20);
         phaseLabel.setLayoutY(30);
@@ -250,25 +249,23 @@ public class Game extends Application {
         String phaseText = "Phase " + phase;
         phaseLabel.setText(phaseText);
         switch (phase) {
-            case 2:
+            case 2 -> {
                 gameController.activatePhase2();
                 phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
                         "-fx-background-color: orange;");
-                break;
-            case 3:
+            }
+            case 3 -> {
                 gameController.activatePhase3();
                 phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
                         "-fx-background-color: yellow;");
-                break;
-            case 4:
+            }
+            case 4 -> {
                 gameController.activatePhase4();
                 phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
                         "-fx-background-color: green;");
-                break;
-            default:
-                phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
-                        "-fx-background-color: red;");
-                break;
+            }
+            default -> phaseLabel.setStyle("-fx-font-size: 16px; -fx-padding: 10px; -fx-opacity: 0.8; " +
+                    "-fx-background-color: red;");
         }
     }
 
@@ -289,7 +286,7 @@ public class Game extends Application {
     public void createSoundTrack() throws URISyntaxException {
         if(DataClass.getCurrentUser().isUnMute()){
             String path = "/soundtracks/" + DataClass.getCurrentUser().getSoundTrackPath() + ".mp3";
-            URI uri = LoginMenu.class.getResource(path).toURI();
+            URI uri = Objects.requireNonNull(LoginMenu.class.getResource(path)).toURI();
             Media soundtrack = new Media(uri.toString());
 
             backGroundTrack = new MediaPlayer(soundtrack);
@@ -302,7 +299,7 @@ public class Game extends Application {
 
 
     private Ball[] createBalls(int n){
-        Ball balls[] = new Ball[n];
+        Ball[] balls = new Ball[n];
 
         for (int i = 0; i<n ; i++){
             balls[i] = new Ball(100,100,10,i);
@@ -345,7 +342,7 @@ public class Game extends Application {
                     for (double existAngle: initialRandomAngles) {
                         if(existAngle == angle){
                             check = true;
-                            break inner;
+                            break;
                         }
                     }
                 }
@@ -354,7 +351,7 @@ public class Game extends Application {
                 ball.setAngleWithCenter(angle);
                 ball.getNumberText().setVisible(false);
                 gamePane.getChildren().add(ball);
-                gameController.getRotatingBalls().add(ball);
+                GameController.getRotatingBalls().add(ball);
                 initialRandomAngles.add(angle);
                 rotateAnimation.play();
             }
@@ -365,7 +362,7 @@ public class Game extends Application {
     private void createProfilePickViewer(Pane gamePane) throws URISyntaxException {
         URI uri = LoginMenu.class.getResource(DataClass.getCurrentUser().getImagePath()).toURI();
         Image profileImage = new Image(uri.toString(),40,40, true,true);
-        profilePicViewer = new ImageView();
+        ImageView profilePicViewer = new ImageView();
         profilePicViewer.setImage(profileImage);
         profilePicViewer.setLayoutX(450);
         profilePicViewer.setLayoutY(750);
@@ -398,7 +395,7 @@ public class Game extends Application {
     }
 
     public void setGamePane(Pane gamePane) {
-        this.gamePane = gamePane;
+        Game.gamePane = gamePane;
     }
 
     public static int getRemainingTime() {
@@ -445,20 +442,19 @@ public class Game extends Application {
         }
         rotateAnimation.stop();
         timeline.stop();
-        if (gameController.iceModeActivated){
-            gameController.timerIce.cancel();
+        if (GameController.iceModeActivated){
+            GameController.timerIce.cancel();
         }
-        if (gameController.phase2Activated){
-            gameController.phase2TimerSize.cancel();
-            gameController.phase2TimerDirection.cancel();
+        if (GameController.phase2Activated){
+            GameController.phase2TimerSize.cancel();
+            GameController.phase2TimerDirection.cancel();
         }
-        if (gameController.phase3Activated){
-            gameController.phase3Timer.cancel();
+        if (GameController.phase3Activated){
+            GameController.phase3Timer.cancel();
         }
-        if (gameController.phase4Activated){
-            gameController.phase4Timer.cancel();
+        if (GameController.phase4Activated){
+            GameController.phase4Timer.cancel();
         }
-        //todo press space to go to next menu
     }
 
     private void pauseGame() throws IOException {
@@ -468,7 +464,6 @@ public class Game extends Application {
         }
         rotateAnimation.pause();
         timeline.pause();
-
 
         Stage pauseStage = new Stage();
         URL url = LoginMenu.class.getResource("/fxml/PauseMenu.fxml");

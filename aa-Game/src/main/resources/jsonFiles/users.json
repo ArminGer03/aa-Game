@@ -10,9 +10,9 @@
     "colorHex": "#1a3399",
     "theme": "Normal",
     "language": "English",
-    "shootKey": "S",
-    "leftKey": "A",
-    "rightKey": "D",
+    "shootKey": "Space",
+    "leftKey": "Left",
+    "rightKey": "Right",
     "balls": 10,
     "soundTrackPath": "jazzyfrenchy",
     "HighScores": {
