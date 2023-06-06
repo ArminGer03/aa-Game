@@ -9,16 +9,16 @@
     "soundMode": "UnMute",
     "colorHex": "#000000",
     "language": "English",
-    "balls": 12,
+    "balls": 10,
     "soundTrackPath": " ",
     "HighScores": {
       "Easy": 0,
-      "Medium": 33,
+      "Medium": 27,
       "Hard": 0
     },
     "HighScoreFinishedTime": {
       "Easy": -1,
-      "Medium": 78,
+      "Medium": 85,
       "Hard": -1
     }
   },

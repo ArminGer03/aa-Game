@@ -143,4 +143,8 @@ public class User {
         return HighScoreFinishedTime;
     }
 
+    public boolean isUnMute(){
+        return this.soundMode.equals("UnMute");
+    }
+
 }

@@ -103,12 +103,14 @@ public class GameController {
             balls[Game.shotBalls].setBallAnimation(shootAnimation);
             shootAnimation.play();
 
-            URI uri;
-            uri = LoginMenu.class.getResource("/soundtracks/Blip.mp3").toURI();
-            Media shootSoundMedia = new Media(uri.toString());
-            MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
-            shootSound.setVolume(0.5);
-            shootSound.play();
+            if (DataClass.getCurrentUser().isUnMute()){
+                URI uri;
+                uri = LoginMenu.class.getResource("/soundtracks/Blip.mp3").toURI();
+                Media shootSoundMedia = new Media(uri.toString());
+                MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
+                shootSound.setVolume(0.5);
+                shootSound.play();
+            }
 
             Game.shotBalls++;
         }

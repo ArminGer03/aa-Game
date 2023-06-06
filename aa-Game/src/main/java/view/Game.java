@@ -151,6 +151,7 @@ public class Game extends Application {
                 else if (keyName.equals("Tab") && GameController.getIceProgress() == 1 && !isFinished){
                     Game.gameController.iceMode();
                 }
+                //todo press space to go to next menu
 
                 //todo add esc for pause
 
@@ -264,14 +265,16 @@ public class Game extends Application {
         iceProgressBar.setProgress(progress);
     }
     public void createSoundTrack() throws URISyntaxException {
-        URI uri = LoginMenu.class.getResource("/soundtracks/evolution.mp3").toURI();
-        Media soundtrack = new Media(uri.toString());
+        if(DataClass.getCurrentUser().isUnMute()){
+            URI uri = LoginMenu.class.getResource("/soundtracks/evolution.mp3").toURI();
+            Media soundtrack = new Media(uri.toString());
 
-        backGroundTrack = new MediaPlayer(soundtrack);
+            backGroundTrack = new MediaPlayer(soundtrack);
 
-        backGroundTrack.setVolume(0.1);
+            backGroundTrack.setVolume(0.1);
 
-        backGroundTrack.play();
+            backGroundTrack.play();
+        }
     }
 
 
@@ -333,9 +336,6 @@ public class Game extends Application {
                 rotateAnimation.play();
             }
         }
-        else{
-            //todo add loadup for initial angles
-        }
 
     }
 
@@ -387,12 +387,15 @@ public class Game extends Application {
         BackgroundFill backgroundFill = new BackgroundFill(Color.RED, null, null);
         Background background = new Background(backgroundFill);
         gamePane.setBackground(background);
-        URI uri;
-        uri = LoginMenu.class.getResource("/soundtracks/GameOver.mp3").toURI();
-        Media shootSoundMedia = new Media(uri.toString());
-        MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
-        shootSound.setVolume(0.5);
-        shootSound.play();
+
+        if(DataClass.getCurrentUser().isUnMute()){
+            URI uri;
+            uri = LoginMenu.class.getResource("/soundtracks/GameOver.mp3").toURI();
+            Media shootSoundMedia = new Media(uri.toString());
+            MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
+            shootSound.setVolume(0.5);
+            shootSound.play();
+        }
     }
 
 
@@ -402,17 +405,21 @@ public class Game extends Application {
         BackgroundFill backgroundFill = new BackgroundFill(Color.GREEN, null, null);
         Background background = new Background(backgroundFill);
         gamePane.setBackground(background);
-        URI uri;
-        uri = LoginMenu.class.getResource("/soundtracks/veryNice.mp3").toURI();
-        Media shootSoundMedia = new Media(uri.toString());
-        MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
-        shootSound.setVolume(0.5);
-        shootSound.play();
+        if(DataClass.getCurrentUser().isUnMute()){
+            URI uri;
+            uri = LoginMenu.class.getResource("/soundtracks/veryNice.mp3").toURI();
+            Media shootSoundMedia = new Media(uri.toString());
+            MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
+            shootSound.setVolume(0.5);
+            shootSound.play();
+        }
     }
 
     public static void finish(){
         isFinished = true;
-        backGroundTrack.stop();
+        if(DataClass.getCurrentUser().isUnMute()){
+            backGroundTrack.stop();
+        }
         rotateAnimation.stop();
         timeline.stop();
         if (gameController.iceModeActivated){
@@ -428,7 +435,7 @@ public class Game extends Application {
         if (gameController.phase4Activated){
             gameController.phase4Timer.cancel();
         }
-
+        //todo press space to go to next menu
     }
 
 
