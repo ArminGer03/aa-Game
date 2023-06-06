@@ -1,12 +1,16 @@
 package view.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import model.User;
 import utility.DataClass;
 import utility.Regexes;
 import view.LoginMenu;
+
+import java.util.Objects;
 
 public class ForgotMenuGController {
     @FXML
@@ -21,10 +25,7 @@ public class ForgotMenuGController {
     private Label userLabel;
     @FXML
     private Label passLabel;
-    @FXML
-    private Button changeButton ;
-    @FXML
-    private Button backButton ;
+
 
     @FXML
     public void initialize() {
@@ -46,7 +47,8 @@ public class ForgotMenuGController {
                     newPassword.setVisible(false);
                     confirmPassword.setVisible(false);
                 }
-                else if (DataClass.getUserByEmail(email.getText()).getUsername().equals(username.getText())) {
+                else if (Objects.requireNonNull(DataClass.getUserByEmail(email.getText())).getUsername().equals(
+                        username.getText())) {
                     userLabel.setText(null);
                     newPassword.setVisible(true);
                     confirmPassword.setVisible(true);
@@ -59,7 +61,8 @@ public class ForgotMenuGController {
                 newPassword.setVisible(false);
                 confirmPassword.setVisible(false);
             }
-            else if (!DataClass.getUserByEmail(newText).getUsername().equals(username.getText())) {
+            else if (!Objects.requireNonNull(DataClass.getUserByEmail(newText)).getUsername().equals(
+                    username.getText())) {
                 userLabel.setText("Email doesn't match with user!");
                 newPassword.setVisible(false);
                 confirmPassword.setVisible(false);
@@ -105,7 +108,7 @@ public class ForgotMenuGController {
     }
 
 
-    public void changePass(MouseEvent mouseEvent) throws Exception {
+    public void changePass() throws Exception {
         if (username.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error!");
@@ -143,6 +146,7 @@ public class ForgotMenuGController {
         }
         else {
             User user = DataClass.getUserByUsername(username.getText());
+            assert user != null;
             user.setPassword(newPassword.getText());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Successful!");
@@ -153,7 +157,7 @@ public class ForgotMenuGController {
         }
     }
 
-    public void back(MouseEvent mouseEvent) throws Exception {
+    public void back() throws Exception {
         new LoginMenu().start(DataClass.getStage());
     }
 }

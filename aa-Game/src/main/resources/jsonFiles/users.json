@@ -52,5 +52,32 @@
       "Medium": 69,
       "Hard": -1
     }
+  },
+  {
+    "username": "ArminG",
+    "password": "84c501b6d4db9a113cff4692a2e6081762a66c152cf52b2d5b8e2abed927b90f",
+    "email": "a.a@a.a",
+    "imagePath": "/images/pic1.jpeg",
+    "imageNumber": 0,
+    "gameMode": "Medium",
+    "soundMode": "UnMute",
+    "colorHex": "#000000",
+    "theme": "Normal",
+    "language": "English",
+    "shootKey": "Space",
+    "leftKey": "Left",
+    "rightKey": "right",
+    "balls": 10,
+    "soundTrackPath": "evolution",
+    "HighScores": {
+      "Easy": 0,
+      "Medium": 0,
+      "Hard": 0
+    },
+    "HighScoreFinishedTime": {
+      "Easy": -1,
+      "Medium": -1,
+      "Hard": -1
+    }
   }
 ]

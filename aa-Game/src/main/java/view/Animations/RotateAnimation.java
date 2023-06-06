@@ -22,7 +22,7 @@ public class RotateAnimation extends Transition {
         this.rotatingBalls = rotatingBalls;
         this.borderCircle = borderCircle;
         this.direction = direction;
-        this.RotationSpeed = rotationSpeed;
+        RotationSpeed = rotationSpeed;
         this.visibility = visibility;
         this.setCycleCount(-1);
         this.setCycleDuration(Duration.millis(5000));
