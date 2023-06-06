@@ -38,7 +38,7 @@ public class SettingMenuGController {
     ObservableList<String> ballsChoiceList = FXCollections.observableArrayList("10", "11","12","13","14","15");
     ObservableList<String> themeChoiceList = FXCollections.observableArrayList("Normal", "B&W");
     ObservableList<String> musicChoiceList = FXCollections.observableArrayList("evolution", "jazzyfrenchy","summer");
-    ObservableList<String> shootChoiceList = FXCollections.observableArrayList("Space", "S","J","Enter");
+    ObservableList<String> shootChoiceList = FXCollections.observableArrayList("Space","W", "U", "S","J","Enter");
     ObservableList<String> leftChoiceList = FXCollections.observableArrayList("Left", "A","H");
     ObservableList<String> rightChoiceList = FXCollections.observableArrayList("Right", "D","K");
 

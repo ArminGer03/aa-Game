@@ -146,13 +146,15 @@ public class Game extends Application {
             public void handle(KeyEvent keyEvent) {
                 String keyName = keyEvent.getCode().getName();
 
-                if (keyName.equals("Left") && GameController.getPhase() == 4 && !isFinished){
+                if (keyName.equals(DataClass.getCurrentUser().getLeftKey()) &&
+                        GameController.getPhase() == 4 && !isFinished){
                     Game.gameController.moveLeft(shooter);
                 }
-                else if (keyName.equals("Right") && GameController.getPhase() == 4 && !isFinished){
+                else if (keyName.equals(DataClass.getCurrentUser().getRightKey()) &&
+                        GameController.getPhase() == 4 && !isFinished){
                     Game.gameController.moveRight(shooter);
                 }
-                else if (keyName.equals("Space") && !isFinished){
+                else if (keyName.equals(DataClass.getCurrentUser().getShootKey()) && !isFinished){
                     try {
                         Game.gameController.ballShooting(gamePane , balls);
                     } catch (URISyntaxException e) {
@@ -162,7 +164,7 @@ public class Game extends Application {
                 else if (keyName.equals("Tab") && GameController.getIceProgress() == 1 && !isFinished){
                     Game.gameController.iceMode();
                 }
-                //todo press space to go to next menu
+                //todo press space to go to next menu when finished
 
                 //todo add esc for pause
 
@@ -277,7 +279,8 @@ public class Game extends Application {
     }
     public void createSoundTrack() throws URISyntaxException {
         if(DataClass.getCurrentUser().isUnMute()){
-            URI uri = LoginMenu.class.getResource("/soundtracks/evolution.mp3").toURI();
+            String path = "/soundtracks/" + DataClass.getCurrentUser().getSoundTrackPath() + ".mp3";
+            URI uri = LoginMenu.class.getResource(path).toURI();
             Media soundtrack = new Media(uri.toString());
 
             backGroundTrack = new MediaPlayer(soundtrack);
