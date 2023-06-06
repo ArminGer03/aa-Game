@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controllers.PauseMenuGController">
+   <children>
+      <ChoiceBox fx:id="modeChoice" layoutX="135.0" layoutY="94.0" onMouseClicked="#changeDifficulty" prefWidth="150.0" />
+      <ChoiceBox fx:id="songChoice" layoutX="134.0" layoutY="149.0" onMouseClicked="#changeSound" prefWidth="150.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="69.0" prefHeight="18.0" prefWidth="115.0" text="Difficulty:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="125.0" prefHeight="18.0" prefWidth="115.0" text="Sound:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="334.0" layoutY="69.0" prefHeight="18.0" prefWidth="115.0" text="Shoot Key:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="shootKeyChoice" layoutX="317.0" layoutY="94.0" onMouseClicked="#changeShootKey" prefWidth="150.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="334.0" layoutY="129.0" prefHeight="18.0" prefWidth="115.0" text="Left Key:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="leftKeyChoice" layoutX="317.0" layoutY="154.0" onMouseClicked="#changeLeftKey" prefWidth="150.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="334.0" layoutY="187.0" prefHeight="18.0" prefWidth="115.0" text="Right Key:" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="rightKeyChoice" layoutX="317.0" layoutY="212.0" onMouseClicked="#changeRightKey" prefWidth="150.0" />
+      <ChoiceBox fx:id="musicChoice" layoutX="136.0" layoutY="210.0" onMouseClicked="#changeMusic" prefWidth="150.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="154.0" layoutY="186.0" prefHeight="18.0" prefWidth="115.0" text="Music" textAlignment="CENTER" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="228.0" layoutY="300.0" mnemonicParsing="false" onAction="#restartGame" prefHeight="26.0" prefWidth="144.0" text="Restart" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="228.0" layoutY="262.0" mnemonicParsing="false" onAction="#resumeGame" prefHeight="26.0" prefWidth="144.0" text="Resume" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="228.0" layoutY="336.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="26.0" prefWidth="144.0" text="Exit" textFill="#263f73">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

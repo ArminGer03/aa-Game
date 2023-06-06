@@ -164,6 +164,12 @@ public class Game extends Application {
                 else if (keyName.equals("Tab") && GameController.getIceProgress() == 1 && !isFinished){
                     Game.gameController.iceMode();
                 }
+                else if (keyName.equals("Esc") && !isFinished){
+                    pauseGame();
+                }
+                else if (keyName.equals("Enter") && !isFinished){
+                    playGame();
+                }
                 //todo press space to go to next menu when finished
 
                 //todo add esc for pause
@@ -452,5 +458,21 @@ public class Game extends Application {
         //todo press space to go to next menu
     }
 
+    private void pauseGame() {
+
+        if(DataClass.getCurrentUser().isUnMute()){
+            backGroundTrack.pause();
+        }
+        rotateAnimation.pause();
+        timeline.pause();
+    }
+
+    private void playGame() {
+        if(DataClass.getCurrentUser().isUnMute()){
+            backGroundTrack.play();
+        }
+        rotateAnimation.play();
+        timeline.play();
+    }
 
 }
