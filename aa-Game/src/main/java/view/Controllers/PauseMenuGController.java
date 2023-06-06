@@ -3,12 +3,10 @@ package view.Controllers;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.input.MouseEvent;
 import utility.DataClass;
 import view.Game;
 
@@ -55,38 +53,34 @@ public class PauseMenuGController {
     }
 
 
-    public void changeDifficulty(MouseEvent mouseEvent) {
+    public void changeDifficulty() {
         modeChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
             DataClass.getCurrentUser().setGameMode(modeChoice.getValue());
             Game.setGameDifficulty();
         });
     }
 
-    public void changeSound(MouseEvent mouseEvent) {
-        songChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setSoundMode(songChoice.getValue());
-        });
+    public void changeSound() {
+        songChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setSoundMode(songChoice.getValue()));
     }
 
-    public void changeShootKey(MouseEvent mouseEvent) {
-        shootKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setShootKey(shootKeyChoice.getValue());
-        });
+    public void changeShootKey() {
+        shootKeyChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setShootKey(shootKeyChoice.getValue()));
     }
 
-    public void changeLeftKey(MouseEvent mouseEvent) {
-        leftKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setLeftKey(leftKeyChoice.getValue());
-        });
+    public void changeLeftKey() {
+        leftKeyChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setLeftKey(leftKeyChoice.getValue()));
     }
 
-    public void changeRightKey(MouseEvent mouseEvent) {
-        rightKeyChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
-            DataClass.getCurrentUser().setRightKey(rightKeyChoice.getValue());
-        });
+    public void changeRightKey() {
+        rightKeyChoice.valueProperty().addListener((observable, oldValue, newValue) ->
+                DataClass.getCurrentUser().setRightKey(rightKeyChoice.getValue()));
     }
 
-    public void changeMusic(MouseEvent mouseEvent) {
+    public void changeMusic() {
         musicChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
             DataClass.getCurrentUser().setSoundTrackPath(musicChoice.getValue());
             try {
@@ -98,15 +92,15 @@ public class PauseMenuGController {
 
     }
 
-    public void restartGame(ActionEvent actionEvent) throws Exception {
+    public void restartGame()  {
     }
 
-    public void resumeGame(ActionEvent actionEvent) {
+    public void resumeGame() {
         DataClass.getPauseStage().close();
         Game.playGame();
     }
 
-    public void exitGame(ActionEvent actionEvent) {
+    public void exitGame() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit Program");
         alert.setHeaderText("Are you sure you want to exit?");

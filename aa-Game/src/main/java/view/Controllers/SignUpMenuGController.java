@@ -5,7 +5,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import model.User;
 import utility.DataClass;
 import utility.Regexes;
@@ -88,7 +87,7 @@ public class SignUpMenuGController {
         });
     }
 
-    public void signUp(MouseEvent mouseEvent) throws Exception {
+    public void signUp() throws Exception {
 
         if (username.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -139,7 +138,7 @@ public class SignUpMenuGController {
         }
     }
 
-    public void back(MouseEvent mouseEvent) throws Exception {
+    public void back() throws Exception {
         new LoginMenu().start(DataClass.getStage());
     }
 }
