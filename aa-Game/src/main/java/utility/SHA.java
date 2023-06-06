@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 public class SHA {
 
     public static byte[] getSHA(String input) {
-        MessageDigest md = null;
+        MessageDigest md;
         try {
             md = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {

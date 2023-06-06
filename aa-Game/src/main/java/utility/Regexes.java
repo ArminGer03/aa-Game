@@ -12,7 +12,7 @@ public enum Regexes {
     EMAIL_FORMAT("([^\\@\\s])+\\@([^\\.\\s])+\\.(\\S+)+");
 
 
-    String regex;
+    final String regex;
 
     Regexes(String regex)
     {

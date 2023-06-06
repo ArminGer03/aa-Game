@@ -272,7 +272,7 @@ public class Game extends Application {
     private static void createIceProgressBar(Pane gamePane){
         Label nameLabel = new Label("Ice Progress:");
         iceProgressBar = new ProgressBar(GameController.getIceProgress());
-        iceProgressBar.setStyle("-fx-accent: #b2ffff;");
+        iceProgressBar.setStyle("-fx-accent: #b2FFFF");
         iceProgressBar.setLayoutX(20);
         iceProgressBar.setLayoutY(750);
         nameLabel.setLayoutX(20);
@@ -331,14 +331,13 @@ public class Game extends Application {
         setRotateAnimation(rotateAnimation);
 
         if (initialRandomAngles == null){
-            initialRandomAngles = new LinkedList<Double>();
+            initialRandomAngles = new LinkedList<>();
             double angle = 0;
             for (int i = 0; i < 5; i++){
                 boolean check = true;
                 while(check){
                     angle = RandomGenerator.randomAngle();
                     check = false;
-                    inner:
                     for (double existAngle: initialRandomAngles) {
                         if(existAngle == angle){
                             check = true;
@@ -360,7 +359,7 @@ public class Game extends Application {
     }
 
     private void createProfilePickViewer(Pane gamePane) throws URISyntaxException {
-        URI uri = LoginMenu.class.getResource(DataClass.getCurrentUser().getImagePath()).toURI();
+        URI uri = Objects.requireNonNull(LoginMenu.class.getResource(DataClass.getCurrentUser().getImagePath())).toURI();
         Image profileImage = new Image(uri.toString(),40,40, true,true);
         ImageView profilePicViewer = new ImageView();
         profilePicViewer.setImage(profileImage);
@@ -410,7 +409,7 @@ public class Game extends Application {
 
         if(DataClass.getCurrentUser().isUnMute()){
             URI uri;
-            uri = LoginMenu.class.getResource("/soundtracks/GameOver.mp3").toURI();
+            uri = Objects.requireNonNull(LoginMenu.class.getResource("/soundtracks/GameOver.mp3")).toURI();
             Media shootSoundMedia = new Media(uri.toString());
             MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
             shootSound.setVolume(0.5);
@@ -427,7 +426,7 @@ public class Game extends Application {
         gamePane.setBackground(background);
         if(DataClass.getCurrentUser().isUnMute()){
             URI uri;
-            uri = LoginMenu.class.getResource("/soundtracks/veryNice.mp3").toURI();
+            uri = Objects.requireNonNull(LoginMenu.class.getResource("/soundtracks/veryNice.mp3")).toURI();
             Media shootSoundMedia = new Media(uri.toString());
             MediaPlayer shootSound = new MediaPlayer(shootSoundMedia);
             shootSound.setVolume(0.5);
@@ -467,6 +466,7 @@ public class Game extends Application {
 
         Stage pauseStage = new Stage();
         URL url = LoginMenu.class.getResource("/fxml/PauseMenu.fxml");
+        assert url != null;
         AnchorPane anchorPane = FXMLLoader.load(url);
         Scene scene = new Scene(anchorPane,600,400);
         pauseStage.setScene(scene);
@@ -485,7 +485,7 @@ public class Game extends Application {
     public static void changeMusic() throws URISyntaxException {
         if(DataClass.getCurrentUser().isUnMute()){
             String path = "/soundtracks/" + DataClass.getCurrentUser().getSoundTrackPath() + ".mp3";
-            URI uri = LoginMenu.class.getResource(path).toURI();
+            URI uri = Objects.requireNonNull(LoginMenu.class.getResource(path)).toURI();
             Media soundtrack = new Media(uri.toString());
 
             if (backGroundTrack.getStatus() == MediaPlayer.Status.PLAYING ||
